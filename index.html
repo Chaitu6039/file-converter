@@ -5,65 +5,87 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>File Tools</title>
 <style>
-:root{--bg:#e9edf0;--card:#fff;--ink:#17212b;--mute:#5d6b78;--line:#cfd7de;--acc:#0b7a75;--acc-ink:#fff;--err:#b42318;--warn:#8a5a00;color-scheme:light}
-@media (prefers-color-scheme:dark){:root{--bg:#10171d;--card:#18222b;--ink:#e6edf3;--mute:#93a3b1;--line:#2b3a47;--acc:#3cc4bb;--acc-ink:#06201e;--err:#ff8a7d;--warn:#f0c36a;color-scheme:dark}}
+:root{--bg:#f3f5fa;--card:#fff;--card2:#f6f8fc;--ink:#141a26;--mute:#5b6678;--line:#dde3ee;--acc:#0a8577;--acc2:#2563eb;--acc-ink:#fff;--err:#c02626;--warn:#8f5b00;--ok:#0f7a55;--r:16px;--sh:0 1px 2px rgba(20,26,38,.05),0 10px 30px rgba(20,26,38,.08);color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0c1017;--card:#151c2a;--card2:#1a2233;--ink:#e8edf6;--mute:#97a4ba;--line:#273247;--acc:#2dd4bf;--acc2:#60a5fa;--acc-ink:#051b18;--err:#ff918a;--warn:#f3c969;--ok:#4ade9a;--sh:0 1px 2px rgba(0,0,0,.45),0 12px 34px rgba(0,0,0,.4);color-scheme:dark}}
 *{box-sizing:border-box}
 html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding:env(safe-area-inset-top,0) 16px env(safe-area-inset-bottom,0)}
-main{max-width:720px;margin:0 auto;padding:28px 0 48px}
-h1{font:600 30px/1.2 "Iowan Old Style",Georgia,serif;margin:0 0 6px}
-.sub{color:var(--mute);margin:0 0 20px}
-#drop{border:2px dashed var(--line);border-radius:10px;padding:30px 16px;text-align:center;cursor:pointer;background:var(--card)}
-#drop.over,#drop:focus-visible{border-color:var(--acc);outline:none}
-#drop b{display:block;font-size:18px}
-#drop span{color:var(--mute);font-size:14px}
-.tabs{display:flex;gap:8px;margin:18px 0 0}
-[role=tab]{flex:1;font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 14px;cursor:pointer}
-[role=tab][aria-selected=true]{background:var(--acc);color:var(--acc-ink);border-color:var(--acc);font-weight:600}
-fieldset{border:1px solid var(--line);border-radius:10px;background:var(--card);margin:12px 0 0;padding:10px 14px 12px}
-legend{font-size:14px;color:var(--mute);padding:0 6px}
-.fl{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:6px;font-size:14px;color:var(--mute)}
+body{background:var(--bg);background-image:radial-gradient(760px 360px at 0% -6%,rgba(37,99,235,.13),transparent 62%),radial-gradient(700px 340px at 100% -4%,rgba(10,133,119,.14),transparent 60%);background-repeat:no-repeat;color:var(--ink);font:16px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:env(safe-area-inset-top,0) 16px env(safe-area-inset-bottom,0);min-height:100vh}
+main{max-width:820px;margin:0 auto;padding:30px 0 56px}
+.hero{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:52px;height:52px;border-radius:15px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(37,99,235,.28);color:var(--acc-ink);flex:none}
+h1{font-size:28px;line-height:1.15;margin:0;font-weight:750;letter-spacing:-.02em}
+.sub{color:var(--mute);margin:3px 0 0;font-size:15px}
+.pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--mute);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 12px 5px 10px}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(15,122,85,.16)}
+#drop{position:relative;border:2px dashed var(--line);border-radius:var(--r);padding:30px 18px 24px;text-align:center;cursor:pointer;background:var(--card);box-shadow:var(--sh);transition:border-color .15s,transform .15s,background .15s}
+#drop:hover{border-color:var(--acc)}
+#drop.over,#drop:focus-visible{border-color:var(--acc);outline:none;background:var(--card2);transform:translateY(-1px)}
+.dz-ico{width:58px;height:58px;border-radius:18px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;color:var(--acc);background:rgba(10,133,119,.11)}
+#drop b{display:block;font-size:19px}
+#drop>span{color:var(--mute);font-size:14px}
+.dz-chips{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.dz-chips em{font-style:normal;font-size:12px;color:var(--mute);background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+.tabs{display:flex;gap:4px;margin:20px 0 0;padding:4px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh)}
+[role=tab]{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:600;color:var(--mute);background:none;border:0;border-radius:10px;padding:10px 14px;cursor:pointer;transition:background .15s,color .15s}
+[role=tab]:hover{color:var(--ink)}
+[role=tab][aria-selected=true]{background:linear-gradient(135deg,var(--acc),var(--acc2));color:var(--acc-ink)}
+fieldset{border:1px solid var(--line);border-radius:var(--r);background:var(--card);box-shadow:var(--sh);margin:14px 0 0;padding:10px 16px 14px;min-width:0}
+legend{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);padding:0 8px;font-weight:650}
+.fl{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:8px;font-size:14px;color:var(--mute)}
 .fl label{display:flex;gap:8px;align-items:center}
 .sl{display:flex;align-items:center;gap:14px}
 .sl input{flex:1;accent-color:var(--acc);min-width:0;height:28px}
-.sl output{min-width:104px;text-align:right;font-weight:600;color:var(--ink)}
-.seg{display:flex;gap:8px;margin-bottom:8px}
-.seg label{flex:1;border:1px solid var(--line);border-radius:8px;padding:7px 10px;text-align:center;cursor:pointer;font-size:14px}
+.sl output{min-width:104px;text-align:right;font-weight:650;color:var(--ink)}
+.seg{display:flex;gap:6px;margin-bottom:8px;padding:3px;background:var(--card2);border:1px solid var(--line);border-radius:12px}
+.seg label{flex:1;border-radius:9px;padding:7px 10px;text-align:center;cursor:pointer;font-size:14px;color:var(--mute);transition:background .15s}
 .seg input{position:absolute;opacity:0}
-.seg label:has(input:checked){background:var(--acc);color:var(--acc-ink);border-color:var(--acc);font-weight:600}
-.seg label:has(input:focus-visible){outline:2px solid var(--acc);outline-offset:2px}
-button,select,input[type=number]{font:inherit;color:inherit}
-button{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:8px 14px;cursor:pointer}
-button.pri{background:var(--acc);color:var(--acc-ink);border-color:var(--acc);font-weight:600}
+.seg label:has(input:checked){background:var(--card);color:var(--ink);font-weight:650;box-shadow:0 1px 3px rgba(20,26,38,.18)}
+.seg label:has(input:focus-visible){outline:2px solid var(--acc);outline-offset:1px}
+button,select,input[type=number],input[type=text]{font:inherit;color:inherit}
+button{border:1px solid var(--line);background:var(--card);border-radius:11px;padding:8px 14px;cursor:pointer;transition:background .15s,border-color .15s,transform .05s}
+button:hover:not(:disabled){border-color:var(--acc);background:var(--card2)}
+button:active:not(:disabled){transform:translateY(1px)}
+button.pri{background:linear-gradient(135deg,var(--acc),var(--acc2));color:var(--acc-ink);border-color:transparent;font-weight:650}
+button.pri:hover:not(:disabled){filter:brightness(1.07);background:linear-gradient(135deg,var(--acc),var(--acc2))}
 button:disabled{opacity:.45;cursor:default}
-select,input[type=number]{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:7px 8px}
+select,input[type=number],input[type=text]{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:7px 9px}
 input[type=number]{width:110px}
-button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible,summary:focus-visible,canvas:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 .bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:16px 0}
-.batch{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 12px;font-size:14px}
+.batch{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;margin:0 0 14px;font-size:14px;box-shadow:var(--sh)}
 .batch.err{color:var(--err)}
-.batch a,.st a{color:var(--acc);font-weight:600}
-.f{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px}
-.top{display:flex;justify-content:space-between;gap:10px}
-.nm{font-weight:600;overflow-wrap:anywhere}
-.meta{color:var(--mute);font-size:13px}
-.ctl{display:flex;align-items:flex-start;white-space:nowrap}
-.x{border:0;background:none;color:var(--mute);padding:0 6px;font-size:18px;line-height:1.2}
-.cut{margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:8px}.cut>b{display:block;margin-bottom:6px}
-.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
-.st{font-size:14px;overflow-wrap:anywhere}
-.st.err{color:var(--err)}
-.st.warn{color:var(--warn)}
-.cmp{display:flex;gap:10px;margin-top:8px}.cmp figure{margin:0;text-align:center;font-size:12px;color:var(--mute)}.cmp img{max-height:120px;max-width:100%;border:1px solid var(--line);border-radius:6px;background:#fff;display:block;margin:0 auto 2px}
-.pb{height:5px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:10px}
-.pb i{display:block;height:100%;width:0;background:var(--acc)}
+.batch a,.st a{color:var(--acc);font-weight:650;text-underline-offset:3px}
+.f{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px 14px 20px;margin-bottom:12px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.f::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:rgb(var(--kc,100,116,139))}
+.ft{flex:none;width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:rgba(var(--kc,100,116,139),.15);color:rgb(var(--kc,100,116,139))}
+.fm{flex:1 1 180px;min-width:0}
+.nm{font-weight:650;overflow-wrap:anywhere;line-height:1.3}
+.meta{color:var(--mute);font-size:13px;margin-top:2px}
+.ctl{display:flex;align-items:flex-start;white-space:nowrap;margin-left:auto}
+.x{border:0;background:none;color:var(--mute);padding:2px 7px;font-size:18px;line-height:1.2;border-radius:8px}
+.x:hover:not(:disabled){background:var(--card2);color:var(--ink);border-color:transparent}
+.row{flex:1 1 100%;display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.row label.meta{margin:0}
+.st{font-size:14px;overflow-wrap:anywhere;flex:1 1 220px;min-width:0}
+.st.ok{color:var(--ok)}.st.err{color:var(--err)}.st.warn{color:var(--warn)}
+.st.ok::before{content:"\2713\00a0";font-weight:800}.st.err::before{content:"\2715\00a0";font-weight:800}.st.warn::before{content:"!\00a0";font-weight:800}
+.pb{flex:1 1 100%;height:6px;border-radius:99px;background:var(--card2);overflow:hidden;margin-top:6px;border:1px solid var(--line)}
+.pb i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .25s}
 .pb.ind i{width:35%;animation:slide 1.1s ease-in-out infinite}
 @keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}
-@media (prefers-reduced-motion:reduce){.pb.ind i{animation:none;width:100%;opacity:.5}}
-#empty{color:var(--mute);text-align:center;padding:12px}
-footer{color:var(--mute);font-size:13px;margin-top:24px}
-footer p{margin:0 0 8px}
-
+@media (prefers-reduced-motion:reduce){.pb.ind i{animation:none;width:100%;opacity:.5}*{transition:none!important}}
+.cmp{display:flex;gap:12px;margin-top:10px}
+.cmp figure{margin:0;text-align:center;font-size:12px;color:var(--mute)}
+.cmp img{max-height:120px;max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;display:block;margin:0 auto 3px}
+#empty{text-align:center;padding:26px 16px;color:var(--mute);background:var(--card);border:1px dashed var(--line);border-radius:var(--r)}
+#empty b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
+#empty .dz-chips{margin-top:12px}
+details.about{margin-top:26px;color:var(--mute);font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 16px}
+details.about summary{cursor:pointer;font-weight:650;color:var(--ink);font-size:14px}
+details.about p{margin:10px 0 0}
+.chip{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;background:var(--card2);border:1px solid var(--line);color:var(--mute)}
+.chip.acc{background:rgba(10,133,119,.12);color:var(--acc);border-color:transparent;font-weight:650}
 dialog{width:min(980px,96vw);height:min(88vh,840px);padding:0;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);overflow:hidden}
 dialog[open]{display:flex;flex-direction:column}
 dialog::backdrop{background:rgba(0,0,0,.55)}
@@ -102,31 +124,80 @@ dialog::backdrop{background:rgba(0,0,0,.55)}
 .pe-foot{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 16px calc(12px + env(safe-area-inset-bottom,0px))}
 .pe-foot #ped-count{font-size:14px;color:var(--mute);margin-right:auto}
 #ped-msg{font-size:14px}
+
+#sig{background:#fff;border:1px solid var(--line);border-radius:10px;touch-action:none;cursor:crosshair;max-width:100%}
+.items-ov{position:absolute;inset:0;pointer-events:none}
+.items-ov .it{position:absolute;cursor:move;user-select:none;white-space:nowrap;line-height:1;pointer-events:auto;touch-action:none;outline:1px dashed transparent}
+.items-ov .it:hover{outline-color:var(--acc)}
+.pvw.placing{cursor:crosshair}
+.cm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+@media (max-width:720px){.cm-grid{grid-template-columns:1fr}}
+.cm-grid figure{margin:0;font-size:12px;color:var(--mute);text-align:center}
+.cm-grid canvas{width:100%;height:auto;background:#fff;border:1px solid var(--line);border-radius:8px}
+#cmpd{width:min(1100px,96vw);height:min(92vh,860px);padding:0;border:1px solid var(--line);border-radius:20px;background:var(--bg);color:var(--ink);overflow:hidden}
+#cmpd[open]{display:flex;flex-direction:column}
+#addd{border:1px solid var(--line);border-radius:16px;background:var(--bg);color:var(--ink);padding:0}
+#addd::backdrop{background:rgba(5,8,14,.55)}
+.pk{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+#askd{border:1px solid var(--line);border-radius:16px;background:var(--bg);color:var(--ink);padding:0}
+#askd::backdrop{background:rgba(5,8,14,.55)}
+#cmpd::backdrop{background:rgba(5,8,14,.6)}
+
+#aed{width:min(980px,96vw);height:min(92vh,880px);padding:0;border:1px solid var(--line);border-radius:20px;background:var(--bg);color:var(--ink);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+#aed[open]{display:flex;flex-direction:column}
+#aed::backdrop{background:rgba(5,8,14,.6);backdrop-filter:blur(3px)}
+.ae-body{flex:1;min-height:0;overflow:auto;padding:0 18px 8px}
+.ae-info{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 10px}
+.ae-wave{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);overflow:hidden}
+#ae-cv{display:block;width:100%;height:190px;touch-action:none;cursor:crosshair}
+.ae-bar{display:flex;gap:8px;align-items:center;margin:8px 0 12px;flex-wrap:wrap}
+.ae-bar input[type=range]{flex:1;min-width:140px;accent-color:var(--acc)}
+.ae-bar button{padding:5px 11px;font-size:14px}
+.ae-tools{display:grid;gap:8px}
+.tg{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 10px;background:var(--card);border:1px solid var(--line);border-radius:14px;font-size:14px;color:var(--mute)}
+.tg button{padding:6px 12px;font-size:14px}
+.tg input[type=text]{width:92px;text-align:center;font-variant-numeric:tabular-nums}
+.tg input[type=number]{width:70px}
+#ae-time{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:650;min-width:70px}
+.ae-marks{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 2px;min-height:10px}
+.ae-marks .chip{display:inline-flex;gap:6px;align-items:center}
+.ae-marks .chip button{border:0;background:none;padding:0 2px;color:var(--mute);font-size:14px;line-height:1}
+.ae-out{padding:6px 18px 0;font-size:14px}
+.ae-out a{color:var(--acc);font-weight:650;text-underline-offset:3px}
+#aed .pe-foot{padding-top:8px}
+#aed .pe-foot label{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--mute)}
 [hidden]{display:none!important}
 </style>
 </head>
 <body>
 <main>
-<h1>File Tools</h1>
-<p class="sub">Convert, merge, split and shrink files on your device. No uploads, no internet needed.</p>
+<header class="hero">
+  <div class="brand"><div class="logo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg></div><div><h1>File Tools</h1><p class="sub">Convert, compress, merge, split and edit files. Private and fully offline.</p></div></div>
+  <div style="display:flex;gap:8px;align-items:center"><button id="addons" title="Add OCR languages and Chinese, Japanese and Korean fonts">Add-ons</button><span class="pill"><i></i>Works offline</span></div>
+</header>
 
 <div id="drop" tabindex="0" role="button" aria-label="Choose files">
+  <div class="dz-ico"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></div>
   <b>Drop files or folders here, paste images, or tap to choose</b>
-  <span>Images, PDF, Office files, audio, video, data, text, or any file</span>
+  <span>Nothing is uploaded. Everything happens on this device.</span>
+  <div class="dz-chips"><em>Images</em><em>PDF</em><em>Word, Excel, PowerPoint</em><em>Audio</em><em>Video</em><em>Data and text</em><em>ZIP</em></div>
   <input id="pick" type="file" multiple hidden>
 </div>
 
 <div class="tabs" role="tablist" aria-label="Mode">
-  <button role="tab" data-mode="convert" aria-selected="true">Convert</button>
-  <button role="tab" data-mode="compress" aria-selected="false">Compress</button>
+  <button role="tab" data-mode="convert" aria-selected="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>Convert</button>
+  <button role="tab" data-mode="compress" aria-selected="false"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l6 6M4 4v5M4 4h5M20 20l-6-6M20 20v-5M20 20h-5"/></svg>Compress</button>
 </div>
 
-<fieldset id="opt-convert">
+<fieldset class="card" id="presets"><legend>Presets and saved settings</legend>
+  <div class="fl"><label>Preset <select id="preset" aria-label="Preset"><option value="">Choose a preset…</option><option value="email">Email-ready: each file under 1 MB</option><option value="tiny">Tiny: 90% smaller</option><option value="web">Web image: 1600 px</option><option value="social">Social media image: 1080 px JPG</option><option value="voice">Audio and video to MP3</option><option value="archive">Pack everything into ZIP</option></select></label>
+  <label id="prof-lab" hidden>Saved <select id="prof-sel" aria-label="Saved settings" hidden></select></label><button id="prof-save">Save current settings…</button><button id="prof-del" hidden>Delete saved</button></div></fieldset>
+<fieldset id="opt-convert" class="card">
   <legend>Image and PDF options</legend>
   <div class="fl">
     <label>Resize images <select id="resize" aria-label="Resize images">
       <option value="0">Original size</option><option value="3840">Longest side 3840 px</option><option value="2560">Longest side 2560 px</option>
-      <option value="1920">Longest side 1920 px</option><option value="1280">Longest side 1280 px</option><option value="800">Longest side 800 px</option><option value="512">Longest side 512 px</option></select></label>
+      <option value="1920">Longest side 1920 px</option><option value="1600">Longest side 1600 px</option><option value="1280">Longest side 1280 px</option><option value="1080">Longest side 1080 px</option><option value="800">Longest side 800 px</option><option value="512">Longest side 512 px</option></select></label>
   </div>
   <div class="sl fl"><label for="quality">Quality (JPG, WebP, PDF)</label><input id="quality" type="range" min="40" max="100" step="5" value="90"><output id="qv" for="quality">90%</output></div>
   <div class="fl"><label>Video to GIF: width <select id="gifw" aria-label="GIF width"><option>320</option><option>480</option><option>640</option></select></label>
@@ -136,7 +207,7 @@ dialog::backdrop{background:rgba(0,0,0,.55)}
   <div class="fl" id="webpnote" hidden>This browser cannot save WebP, so that option is hidden.</div>
 </fieldset>
 
-<fieldset id="opt-compress" hidden>
+<fieldset id="opt-compress" class="card" hidden>
   <legend>Compression target</legend>
   <div class="seg"><label><input type="radio" name="cmode" value="pct">By percentage</label><label><input type="radio" name="cmode" value="size">To a target size</label></div>
   <div class="sl" id="pct-box"><input id="red" type="range" min="10" max="90" step="5" value="90" aria-label="Target size reduction in percent" aria-valuetext="90% smaller"><output id="redv" for="red">90% smaller</output></div>
@@ -148,19 +219,22 @@ dialog::backdrop{background:rgba(0,0,0,.55)}
 <div class="bar">
   <button id="runall" class="pri" hidden>Convert all</button>
   <button id="merge" hidden>Merge into one PDF</button>
+  <button id="compare" hidden>Compare two files</button>
+  <button id="joinaudio" hidden>Join audio files</button><select id="joinfmt" hidden aria-label="Joined audio format"><option value="wav">WAV</option><option value="mp3">MP3</option></select>
   <button id="zipall" hidden>Zip all files</button>
   <button id="dlall" hidden>Download all results (ZIP)</button>
   <button id="clear" hidden>Clear</button>
 </div>
 <div id="batch" class="batch" hidden></div>
 <div id="list"></div>
-<div id="empty">No files yet.</div>
+<div id="empty"><b>No files yet</b>Add a file to see what you can do with it.<div class="dz-chips"><em>Convert</em><em>Compress</em><em>Merge and split PDFs</em><em>Edit PDF pages</em><em>Cut and split audio</em><em>OCR</em></div></div>
 
-<footer>
-  <p>Convert: images to PNG, JPG, WebP, GIF, BMP, ICO or PDF (HEIC photos too); PDF to text, page images or single pages; DOCX, XLSX, PPTX and ODT to PDF and text; audio and video to MP3 or WAV; JSON, CSV, TSV, XML, YAML, HTML, Markdown and text between each other; ZIP and Base64 for any file. Merge uses the order shown in the list; use the arrows to reorder. On any PDF, Edit pages opens a viewer where you can delete, reorder (drag or arrows), rotate and preview pages.</p>
-  <p>Office to PDF keeps text, headings, lists, tables, images and bold or italic, but not charts, shapes or custom fonts, so layout can differ from the original. Older .doc, .xls and .ppt files are not supported. Compressing video and audio runs in real time, and video compression needs Chrome or Edge. A 90% reduction is not possible for every file, and the result shows what was actually achieved.</p>
-</footer>
+<details class="about"><summary>What this tool supports</summary>
+  <p>Convert: images to PNG, JPG, WebP, GIF, BMP, ICO or PDF (HEIC photos too); PDF to text, page images or single pages; DOCX, XLSX, PPTX and ODT to PDF and text; audio and video to MP3 or WAV; JSON, CSV, TSV, XML, YAML, HTML, Markdown and text between each other; ZIP and Base64 for any file. Merge uses the order shown in the list; use the arrows to reorder. On any PDF, Edit pages opens a viewer where you can delete, reorder (drag or arrows), rotate and preview pages.</p><p>Office to PDF keeps text, headings, lists, tables, images and bold or italic, but not charts, shapes or custom fonts, so layout can differ from the original. Older .doc, .xls and .ppt files are not supported. Compressing video and audio runs in real time, and video compression needs Chrome or Edge. A 90% reduction is not possible for every file, and the result shows what was actually achieved.</p>
+  <p>Audio and video files have an Edit audio button: see the waveform, select a section, keep or delete it, split into parts (by hand, equal parts, or at silences), and save as WAV or MP3.</p>
+</details>
 </main>
+
 <dialog id="ped" aria-labelledby="ped-title">
   <div class="pe-head"><h2 id="ped-title">Edit pages</h2><button id="ped-x" aria-label="Close page editor">×</button></div>
   <div class="pe-tools">
@@ -184,6 +258,15 @@ dialog::backdrop{background:rgba(0,0,0,.55)}
         <label>Size <input id="si-size" type="range" min="10" max="60" value="25"> </label></div>
       <div class="fl"><label><input type="checkbox" id="sm-on"> Remove document info (title, author, dates)</label></div>
     </details>
+    <details><summary>Add text or a signature</summary>
+      <div class="fl"><input id="it-text" type="text" placeholder="Text to add" style="width:200px" aria-label="Text to add"><select id="it-size" aria-label="Text size"><option>10</option><option selected>14</option><option>18</option><option>24</option><option>36</option></select><input id="it-color" type="color" value="#000000" aria-label="Text colour"><button id="it-place">Place text on page</button></div>
+      <div class="fl"><canvas id="sig" width="360" height="130" aria-label="Draw your signature here"></canvas><div style="display:grid;gap:6px"><button id="sig-clear">Clear</button><button id="sig-place">Place signature</button></div></div>
+      <div class="fl"><label>Or an image <input id="it-img" type="file" accept="image/png,image/jpeg"></label><label>Size <input id="it-w" type="range" min="5" max="80" value="25"></label><span id="it-hint" role="status"></span></div>
+      <div class="fl" id="it-list"></div>
+    </details>
+    <details><summary>Fill in form fields</summary>
+      <div class="fl"><button id="fm-detect">Find form fields in this PDF</button><span>Filled fields become part of the page and cannot be edited afterwards.</span></div><div id="fm-list" class="fl" style="display:grid;gap:6px"></div>
+    </details>
   </div>
   <div class="pe-body">
     <div id="pv"><div id="pv-box"></div><div class="pv-nav"><button id="pv-prev" aria-label="Previous page">←</button><span id="pv-info" aria-live="polite"></span><button id="pv-next" aria-label="Next page">→</button></div></div>
@@ -191,6 +274,49 @@ dialog::backdrop{background:rgba(0,0,0,.55)}
   </div>
   <div class="pe-foot"><span id="ped-count"></span><span id="ped-msg" role="status"></span><button id="ped-cancel">Cancel</button><button id="ped-save" class="pri" disabled>Save PDF</button></div>
 </dialog>
+
+<dialog id="aed" aria-labelledby="aed-title">
+  <div class="pe-head"><h2 id="aed-title">Edit audio</h2><button id="aed-x" aria-label="Close audio editor">×</button></div>
+  <div class="ae-body">
+    <div class="ae-info"><span class="chip" id="ae-orig"></span><span class="chip acc" id="ae-edit"></span><span class="chip" id="ae-sel"></span></div>
+    <div class="ae-wave"><canvas id="ae-cv" tabindex="0" role="application" aria-label="Audio waveform. Drag to select a section. Space plays or pauses, S adds a split point, Delete removes the selection."></canvas></div>
+    <div class="ae-bar"><input id="ae-pan" type="range" min="0" max="1000" value="0" aria-label="Scroll the waveform"><button id="ae-zin" aria-label="Zoom in">Zoom +</button><button id="ae-zout" aria-label="Zoom out">Zoom −</button><button id="ae-fit">Show all</button><button id="ae-zsel">Zoom to selection</button></div>
+    <div class="ae-tools">
+      <div class="tg"><button id="ae-play" class="pri">▶ Play</button><button id="ae-stop">■ Stop</button><span id="ae-time" aria-live="off">0:00.0</span>
+        <span>Start</span><input id="ae-s" type="text" inputmode="decimal" value="0:00.0" aria-label="Selection start"><span>End</span><input id="ae-e" type="text" inputmode="decimal" value="0:00.0" aria-label="Selection end"><button id="ae-all">Select all</button><button id="ae-none">Clear selection</button></div>
+      <div class="tg"><button id="ae-trim">Keep selection only</button><button id="ae-del">Delete selection</button><button id="ae-undo">Undo</button><button id="ae-redo">Redo</button></div>
+      <div class="tg"><button id="ae-split">Add split at cursor</button><button id="ae-nosplit">Clear splits</button>
+        <span>Equal parts</span><input id="ae-n" type="number" min="2" max="99" value="2" aria-label="Number of equal parts"><button id="ae-eq">Split</button>
+        <span>or every</span><input id="ae-x" type="number" min="1" max="3600" value="30" aria-label="Seconds per part"><span>s</span><button id="ae-ev">Split</button></div>
+      <div class="tg"><span>Find silences quieter than</span><select id="ae-thr" aria-label="Silence threshold"><option value="-30">−30 dB</option><option value="-40" selected>−40 dB</option><option value="-50">−50 dB</option><option value="-60">−60 dB</option></select><span>lasting</span><select id="ae-min" aria-label="Minimum silence length"><option value="0.3">0.3 s</option><option value="0.5">0.5 s</option><option value="1" selected>1 s</option><option value="2">2 s</option></select><button id="ae-sil">Split at silences</button></div>
+    <div class="tg"><span>Combine</span><button id="ae-add">Add audio at cursor…</button><button id="ae-addend">Add audio to end…</button><input id="ae-addfile" type="file" accept="audio/*,video/*,.mp3,.wav,.m4a,.aac,.ogg,.flac,.mp4,.mov,.webm" multiple hidden></div>
+      <div class="tg"><span>Volume</span><input id="ae-gain" type="range" min="-20" max="20" step="1" value="0" aria-label="Volume change in decibels"><output id="ae-gainv">0 dB</output><label><input type="checkbox" id="ae-norm"> Normalize</label>
+        <span>Speed</span><select id="ae-speed" aria-label="Speed (also changes pitch)"><option value="0.5">0.5x</option><option value="0.75">0.75x</option><option value="1" selected>1x</option><option value="1.25">1.25x</option><option value="1.5">1.5x</option><option value="2">2x</option></select>
+        <span>Noise reduction</span><select id="ae-nr" aria-label="Noise reduction"><option value="0" selected>Off</option><option value="1">Light</option><option value="2">Medium</option><option value="3">Strong</option></select><button id="ae-noisebtn" title="Select a stretch of pure background noise first">Use selection as noise sample</button><span class="chip acc" id="ae-noise" hidden>Noise sample set</span></div>
+      <div class="tg" style="font-size:13px">Volume, speed and fade are heard when you play. Speed also changes pitch. Noise reduction uses your noise sample, or the quietest half second if you set none, and is applied when you save.</div>
+    </div>
+    <div class="ae-marks" id="ae-marks" aria-label="Split points"></div>
+  </div>
+  <div class="ae-out" id="ae-out" role="status"></div>
+  <div class="pe-foot"><label><input type="checkbox" id="ae-fade"> Fade in and out</label><select id="ae-fmt" aria-label="Output format"><option value="wav">WAV</option><option value="mp3">MP3</option></select><span id="ae-msg" role="status" style="margin-right:auto"></span><button id="ae-savesel">Save selection</button><button id="ae-saveparts">Save parts</button><button id="ae-save" class="pri">Save edited audio</button></div>
+</dialog>
+
+<dialog id="cmpd" aria-labelledby="cmp-title">
+  <div class="pe-head"><h2 id="cmp-title">Compare</h2><button id="cmp-x" aria-label="Close comparison">×</button></div>
+  <div class="ae-body">
+    <div class="ae-info"><span class="chip acc" id="cm-sum"></span><span class="chip" id="cm-page"></span></div>
+    <div class="tg"><button id="cm-prev">← Previous page</button><button id="cm-next">Next page →</button><button id="cm-all">Find all differences</button><button id="cm-save">Save difference report (PDF)</button></div>
+    <div class="cm-grid"><figure><canvas id="cm-a"></canvas><figcaption id="cm-an">A</figcaption></figure><figure><canvas id="cm-b"></canvas><figcaption id="cm-bn">B</figcaption></figure><figure><canvas id="cm-d"></canvas><figcaption>Differences in red</figcaption></figure></div>
+    <div class="ae-marks" id="cm-list" aria-label="Pages that differ"></div>
+  </div>
+  <div class="ae-out" id="cm-out" role="status"></div>
+</dialog>
+
+<dialog id="addd" aria-labelledby="add-title"><div style="padding:18px;display:grid;gap:12px;width:min(560px,92vw)"><div style="display:flex;justify-content:space-between;align-items:center"><h2 id="add-title" style="margin:0;font-size:18px">Add-ons</h2><button id="add-x" aria-label="Close">×</button></div>
+<p class="meta" style="margin:0">Add-on packs add more OCR languages and let PDFs show Chinese, Japanese and Korean text. Pick a pack file (.ftpack) once. After that it works offline.</p>
+<div id="add-have" class="meta"></div><div id="add-list"></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button id="add-pick" class="pri">Add a pack file…</button><input id="add-file" type="file" accept=".ftpack" multiple hidden><span id="add-msg" role="status" class="meta"></span></div></div></dialog>
+
+<dialog id="askd" aria-labelledby="ask-l"><div style="padding:18px;display:grid;gap:12px;min-width:min(340px,86vw)"><label id="ask-l" for="ask-i" style="font-weight:650"></label><input id="ask-i" type="text" style="width:100%"><div style="display:flex;gap:8px;justify-content:flex-end"><button id="ask-no">Cancel</button><button id="ask-ok" class="pri">OK</button></div></div></dialog>
 
 <script id="lib-pdfjs" type="text/plain">/**
  * @licstart The following is the entire license notice for the
@@ -2632,7 +2758,6 @@ async function convert(it,t,ctx){
     const e={'image/png':'png','image/jpeg':'jpg','image/webp':'webp','image/gif':'gif','application/pdf':'pdf','audio/wav':'wav','audio/mpeg':'mp3','text/plain':'txt'}[mime]||'bin';
     return[new Blob([a],{type:mime}),b.replace(/\.(b64|datauri)$/,'')+'.'+e]}
   if(k=='image')return t=='ocr'?await imageToText(f,ctx):await imageTo(f,t);
-  if((k=='audio'||k=='video')&&/^(cut|autosplit|splitn)$/.test(t))return await cutMedia(f,k,t,ctx,it.cut||{});
   if(k=='video'&&t=='mp4')return await videoToMp4(f,ctx);
   if(k=='video'&&t=='gif')return await videoToGif(f,ctx);
   if(k=='audio'||k=='video'){const buf=await decodeAudio(f);return t=='mp3'?[await mp3Blob(buf,ctx),b+'.mp3']:[await wavBlob(buf),b+'.wav']}
@@ -2676,7 +2801,7 @@ async function cText(f){const e=ext(f.name),s=minify(await f.text(),e);return[aw
 async function cOther(f){return[await gzip(await f.arrayBuffer()),f.name+'.gz']}
 
 /* ===== settings ===== */
-const DEF={mode:'convert',pct:90,cmode:'pct',tsize:500,tunit:'KB',keep:false,keepText:false,resize:0,quality:90,gifw:480,giffps:10,gifmax:10,ocrlang:'eng',targets:{}};
+const DEF={mode:'convert',pct:90,cmode:'pct',tsize:500,tunit:'KB',keep:false,keepText:false,resize:0,quality:90,gifw:480,giffps:10,gifmax:10,ocrlang:'eng',targets:{},profiles:{}};
 let S={...DEF};
 try{Object.assign(S,JSON.parse(localStorage.getItem('filetools')||'{}'))}catch(e){}
 const saveS=()=>{try{localStorage.setItem('filetools',JSON.stringify(S))}catch(e){}};
@@ -2710,7 +2835,7 @@ function kind(f){const e=ext(f.name),m=f.type;
 const T={image:['png','jpg','webp','gif','bmp','ico','pdf','clean','ocr'],audio:['mp3','wav'],video:['mp4','gif','mp3','wav'],pdf:['txt','png','jpg','split','nometa','ocrtxt','ocrpdf'],
   json:['csv','yaml','xml','txt','pdf','xlsx'],zip:['unzip'],docx:['pdf','txt','html'],xlsx:['pdf','csv','json'],pptx:['pdf','txt'],odt:['pdf','txt'],
   csv:['json','tsv','html','pdf','xlsx'],tsv:['json','csv','pdf','xlsx'],xml:['json'],yaml:['json'],md:['html','txt','pdf','docx'],html:['txt','pdf'],text:['html','json','pdf','docx','decode']};
-const LBL={pdf:'PDF',png:'PNG',jpg:'JPG',webp:'WebP',gif:'GIF',bmp:'BMP',ico:'ICO (icon)',clean:'Same format, metadata removed',mp3:'MP3',wav:'WAV',csv:'CSV',tsv:'TSV',json:'JSON',yaml:'YAML',xml:'XML',txt:'Text',html:'HTML',split:'Split into single pages',base64:'Base64 text',datauri:'Data URI',decode:'Decode Base64 to file',zip:'ZIP archive',unzip:'Extract files',xlsx:'Excel (XLSX)',docx:'Word (DOCX)',mp4:'MP4 (video)',nometa:'Remove metadata (author, dates)',ocr:'Text (OCR)',ocrtxt:'Text via OCR (for scans)',ocrpdf:'Searchable PDF via OCR',cut:'Cut a section (start to end)',autosplit:'Auto-split on silence',splitn:'Split every N seconds'};
+const LBL={pdf:'PDF',png:'PNG',jpg:'JPG',webp:'WebP',gif:'GIF',bmp:'BMP',ico:'ICO (icon)',clean:'Same format, metadata removed',mp3:'MP3',wav:'WAV',csv:'CSV',tsv:'TSV',json:'JSON',yaml:'YAML',xml:'XML',txt:'Text',html:'HTML',split:'Split into single pages',base64:'Base64 text',datauri:'Data URI',decode:'Decode Base64 to file',zip:'ZIP archive',unzip:'Extract files',xlsx:'Excel (XLSX)',docx:'Word (DOCX)',mp4:'MP4 (video)',nometa:'Remove metadata (author, dates)',ocr:'Text (OCR)',ocrtxt:'Text via OCR (for scans)',ocrpdf:'Searchable PDF via OCR'};
 function opts(it){const e=ext(it.file.name);
   return[...(T[it.kind]||[]).filter(x=>x!=e&&!(x=='jpg'&&e=='jpeg')&&(x!='webp'||CAP.webp)&&(!/^ocr/.test(x)||OCR)),...(it.kind=='zip'?[]:['zip']),'base64','datauri']}
 
@@ -2742,53 +2867,25 @@ async function imageTo(f,t){
   const c=await drawImg(f,mx,t=='jpg');return[await cblob(c,MIME[t],q),b+'.'+t]}
 
 /* ===== audio ===== */
+const AC_=window.AudioContext||window.webkitAudioContext;let SHAREDAC=null;
+function getAC(){if(!SHAREDAC&&AC_){try{SHAREDAC=new AC_()}catch(e){SHAREDAC=null}}return SHAREDAC}
+['pointerdown','keydown','touchend','click'].forEach(ev=>document.addEventListener(ev,()=>{const a=getAC();if(a&&a.state!='running'){try{const p=a.resume();p&&p.catch&&p.catch(()=>{})}catch(e){}}},{capture:true,passive:true}));
 async function decodeAudio(f){
-  const AC=window.AudioContext||window.webkitAudioContext,ctx=new AC();
-  try{return await ctx.decodeAudioData(await f.arrayBuffer())}catch(e){throw new Error('This browser cannot decode that audio.')}finally{ctx.close()}}
+  const ctx=getAC();if(!ctx)throw new Error('This browser cannot decode audio.');
+  try{return await ctx.decodeAudioData(await f.arrayBuffer())}catch(e){throw new Error('This browser cannot decode that audio.')}}
 async function wavBlob(buf){
   const ch=buf.numberOfChannels,n=buf.length,sr=buf.sampleRate,v=new DataView(new ArrayBuffer(44+n*ch*2)),w=(o,s)=>[...s].forEach((c,i)=>v.setUint8(o+i,c.charCodeAt(0)));
   w(0,'RIFF');v.setUint32(4,36+n*ch*2,true);w(8,'WAVEfmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,ch,true);v.setUint32(24,sr,true);v.setUint32(28,sr*ch*2,true);v.setUint16(32,ch*2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,n*ch*2,true);
   const d=[...Array(ch)].map((_,i)=>buf.getChannelData(i));let o=44;
   for(let i=0;i<n;i++){if(i%400000==0)await tick();for(let k=0;k<ch;k++){const s=Math.max(-1,Math.min(1,d[k][i]));v.setInt16(o,s<0?s*32768:s*32767,true);o+=2}}
   return new Blob([v],{type:'audio/wav'})}
-async function mp3Blob(buf,ctx){
-  const el=document.getElementById('lib-lame');if(!el)throw new Error('Missing library lame');
-  const code=el.textContent.replace(/<\\\/script/g,'<'+'/script'),ch=Math.min(2,buf.numberOfChannels),L=buf.getChannelData(0).slice(),R=ch>1?buf.getChannelData(1).slice():null;
-  const wsrc=code+';self.onmessage=function(e){var m=e.data,en=new lamejs.Mp3Encoder(m.ch,m.sr,128),out=[],cv=function(a){var o=new Int16Array(a.length);for(var i=0;i<a.length;i++){var s=Math.max(-1,Math.min(1,a[i]));o[i]=s<0?s*32768:s*32767}return o},L=cv(m.L),R=m.R?cv(m.R):null;try{for(var i=0,k=0;i<L.length;i+=1152,k++){var d=R?en.encodeBuffer(L.subarray(i,i+1152),R.subarray(i,i+1152)):en.encodeBuffer(L.subarray(i,i+1152));if(d.length)out.push(new Uint8Array(d));if(k%300==0)postMessage({p:i/L.length})}var x=en.flush();if(x.length)out.push(new Uint8Array(x));postMessage({done:out})}catch(err){postMessage({err:String(err&&err.message||err)})}};';
-  const url=URL.createObjectURL(new Blob([wsrc],{type:'text/javascript'})),w=new Worker(url);
-  return new Promise((ok,no)=>{let poll=null;const end=()=>{clearInterval(poll);w.terminate();URL.revokeObjectURL(url)};
-    poll=setInterval(()=>{if(window.__cancel){end();no(new Error('Cancelled'))}},200);
-    w.onmessage=e=>{const m=e.data;if(m.p!=null)ctx.prog(m.p);else if(m.done){end();ok(new Blob(m.done,{type:'audio/mpeg'}))}else if(m.err){end();no(new Error(m.err))}};
-    w.onerror=()=>{end();no(new Error('The MP3 encoder could not start in this browser.'))};
-    w.postMessage({ch,sr:buf.sampleRate,L,R},R?[L.buffer,R.buffer]:[L.buffer])})}
-
-/* ===== cut and split audio and video ===== */
-const subBuf=(b,a,z)=>({numberOfChannels:b.numberOfChannels,sampleRate:b.sampleRate,length:z-a,getChannelData:i=>b.getChannelData(i).subarray(a,z)});
-function silenceSegs(buf,C){
-  const w=Math.round(buf.sampleRate*.05),n=Math.floor(buf.length/w),thr=Math.pow(10,(+C.db||-40)/20),min=Math.max(.2,+C.sil||.7),ch=[...Array(buf.numberOfChannels)].map((_,i)=>buf.getChannelData(i)),sil=[];
-  for(let i=0;i<n;i++){let m=0;for(const c of ch){let s=0;for(let j=i*w;j<(i+1)*w;j++)s+=c[j]*c[j];m=Math.max(m,s/w)}sil.push(Math.sqrt(m)<thr)}
-  const cuts=[];let st=-1;for(let i=0;i<=n;i++){const q=i<n&&sil[i];if(q&&st<0)st=i;if(!q&&st>=0){if((i-st)*.05>=min)cuts.push((st+i)/2*.05);st=-1}}
-  const pts=[0,...cuts,buf.duration],segs=[];
-  for(let i=0;i<pts.length-1;i++){if(pts[i+1]-pts[i]<1&&segs.length)segs[segs.length-1][1]=pts[i+1];else segs.push([pts[i],pts[i+1]])}
-  return segs}
-async function cutMedia(f,k,t,ctx,C){
-  const b=base(f.name),buf=await decodeAudio(f),sr=buf.sampleRate,dur=buf.duration;let segs;
-  if(t=='cut'){const s=Math.max(0,+C.s||0),e=+C.e>s?Math.min(+C.e,dur):dur;if(s>=dur)throw new Error('Start is past the end of the file ('+dur.toFixed(1)+' s).');segs=[[s,e]]}
-  else if(t=='splitn'){const n=Math.max(1,+C.n||60);segs=[];for(let s=0;s<dur;s+=n){if(dur-s<1&&segs.length)segs[segs.length-1][1]=dur;else segs.push([s,Math.min(dur,s+n)])}}
-  else segs=silenceSegs(buf,C);
-  const n=segs.length,out=[];let note='';
-  if(t!='cut'&&n<2)note=t=='autosplit'?'No pauses long enough were found, so nothing was split. Try a shorter silence length or a higher threshold.':'The file is shorter than one piece, so nothing was split.';
-  for(let i=0;i<n;i++){
-    if(window.__cancel)throw new Error('Cancelled');
-    const [s,e]=segs[i],nm=t=='cut'?b+'-cut':`${b}-part${pad(i+1,n)}`,c={prog:p=>ctx.prog((i+p)/n),say:m=>ctx.say((n>1?`Part ${i+1} of ${n}: `:'')+m)};
-    if(k=='video'){
-      const x=await recordMedia(f,true,{mp4:true,start:s,end:e,bits:(d,w,h)=>({ab:128e3,vb:Math.min(12e6,Math.max(1e6,w*h*30*.1*S.quality/90))})},c);
-      out.push([x.b,nm+'.'+x.ext])}
-    else{
-      const sb=subBuf(buf,Math.floor(s*sr),Math.min(buf.length,Math.ceil(e*sr)));
-      if(C.fmt=='wav')out.push([await wavBlob(sb),nm+'.wav']);else out.push([await mp3Blob(sb,c),nm+'.mp3']);ctx.prog((i+1)/n)}}
-  if(note)out[0][2]=note;
-  return out}
+async function mp3Main(buf,ctx){
+  await lib('lame');const ch=Math.min(2,buf.numberOfChannels),en=new lamejs.Mp3Encoder(ch,buf.sampleRate,128);
+  const cv=a=>{const o=new Int16Array(a.length);for(let i=0;i<a.length;i++){const s=Math.max(-1,Math.min(1,a[i]));o[i]=s<0?s*32768:s*32767}return o};
+  const L=cv(buf.getChannelData(0)),R=ch>1?cv(buf.getChannelData(1)):null,out=[];
+  for(let i=0,k=0;i<L.length;i+=1152,k++){const d=R?en.encodeBuffer(L.subarray(i,i+1152),R.subarray(i,i+1152)):en.encodeBuffer(L.subarray(i,i+1152));
+    if(d.length)out.push(new Uint8Array(d));if(k%300==0){ctx.prog(i/L.length);await tick()}}
+  const e=en.flush();if(e.length)out.push(new Uint8Array(e));return new Blob(out,{type:'audio/mpeg'})}
 
 /* ===== PDF tools ===== */
 async function pdfDoc(f){const L=await pdfjs();return L.getDocument({data:new Uint8Array(await f.arrayBuffer())}).promise}
@@ -2837,26 +2934,29 @@ async function zipMany(entries){
 
 /* ===== shared rich-text PDF layout (pdf-lib) ===== */
 const famOf=n=>/courier|consolas|mono|menlo|lucida console/i.test(n)?'c':/times|georgia|cambria|garamond|palatino|book antiqua|minion|serif/i.test(n)&&!/sans/i.test(n)?'t':'h';
-const FB={ns:['ns-r','ns-b','ns-i','ns-bi'],dev:['dev-r','dev-b'],guj:['guj'],ben:['ben'],tam:['tam'],tel:['tel'],gur:['gur'],kan:['kan'],mal:['mal'],ara:['ara-r','ara-b']};
+const FB={cjk:['cjk'],jpn:['jpn'],kor:['kor'],ns:['ns-r','ns-b','ns-i','ns-bi'],dev:['dev-r','dev-b'],guj:['guj'],ben:['ben'],tam:['tam'],tel:['tel'],gur:['gur'],kan:['kan'],mal:['mal'],ara:['ara-r','ara-b']};
 function fbKey(cp){
   if((cp>=0x900&&cp<=0x97f)||(cp>=0xa8e0&&cp<=0xa8ff)||(cp>=0x1cd0&&cp<=0x1cff))return'dev';
   if(cp>=0x980&&cp<=0x9ff)return'ben';if(cp>=0xa00&&cp<=0xa7f)return'gur';if(cp>=0xa80&&cp<=0xaff)return'guj';
   if(cp>=0xb80&&cp<=0xbff)return'tam';if(cp>=0xc00&&cp<=0xc7f)return'tel';if(cp>=0xc80&&cp<=0xcff)return'kan';if(cp>=0xd00&&cp<=0xd7f)return'mal';
   if((cp>=0x600&&cp<=0x6ff)||(cp>=0x750&&cp<=0x77f)||(cp>=0xfb50&&cp<=0xfdff)||(cp>=0xfe70&&cp<=0xfeff))return'ara';
+  if((cp>=0xac00&&cp<=0xd7af)||(cp>=0x1100&&cp<=0x11ff)||(cp>=0x3130&&cp<=0x318f))return'kor';
+  if(cp>=0x3040&&cp<=0x30ff)return'jpn';
+  if((cp>=0x2e80&&cp<=0x9fff)||(cp>=0xf900&&cp<=0xfaff)||(cp>=0xff00&&cp<=0xffef)||(cp>=0x3400&&cp<=0x4dbf)||(cp>=0x20000&&cp<=0x2ffff))return'cjk';
   return cp>=0x100?'ns':null}
 const isJoin=cp=>cp==0x200c||cp==0x200d||cp==0x25cc;
 function scanKeys(str,keys){for(const ch of String(str)){const cp=ch.codePointAt(0);if(cp>=0x100){const k=fbKey(cp);if(k)keys.add(k)}}}
 function gatherText(bl){let t='';const P=p=>{t+=p.items.map(i=>i.text||'').join('')+(p.label||'')};
   for(const b of bl){if(b.type=='tbl')b.trs.forEach(r=>r.cells.forEach(c=>c.paras.forEach(P)));else P(b)}return t}
 const fontBytes={};
-const fontData=id=>fontBytes[id]||(fontBytes[id]=Uint8Array.from(atob(document.getElementById('font-'+id).textContent.trim()),c=>c.charCodeAt(0)));
+const fontData=id=>{if(fontBytes[id])return fontBytes[id];const el=document.getElementById('font-'+id),s=el?el.textContent.trim():(typeof PACKS!='undefined'&&PACKS.fonts[id]);if(!s)return null;return fontBytes[id]=Uint8Array.from(atob(s),c=>c.charCodeAt(0))};
 async function fontSet(doc,keys){
   const F=PDFLib.StandardFonts,names={h:['Helvetica','HelveticaBold','HelveticaOblique','HelveticaBoldOblique'],t:['TimesRoman','TimesRomanBold','TimesRomanItalic','TimesRomanBoldItalic'],c:['Courier','CourierBold','CourierOblique','CourierBoldOblique']},set={fbk:{}};
   for(const k in names){set[k]=[];for(const n of names[k]){const f=await doc.embedFont(F[n]);f._cs=new Set(f.getCharacterSet());set[k].push(f)}}
   if(keys&&keys.size){await lib('regen');await lib('fontkit');doc.registerFontkit(window.fontkit);
-    for(const k of keys){if(!FB[k])continue;set.fbk[k]=[];for(const id of FB[k]){const f=await doc.embedFont(fontData(id),{subset:true});f._cs=new Set(f.getCharacterSet());set.fbk[k].push(f)}}}
+    for(const k of keys){if(!FB[k])continue;set.fbk[k]=[];for(const id of FB[k]){const bytes=fontData(id);if(!bytes)continue;const f=await doc.embedFont(bytes,{subset:!(k=='cjk'||k=='jpn'||k=='kor')});f._cs=new Set(f.getCharacterSet());set.fbk[k].push(f)}}}
   set.get=st=>set[st.font||'h'][(st.b?1:0)+(st.i?2:0)];
-  set.fb=(k,st)=>{const a=set.fbk[k];if(!a)return null;return k=='ns'?a[(st.b?1:0)+(st.i?2:0)]:(k=='dev'||k=='ara')?a[st.b&&a[1]?1:0]:a[0]};
+  set.fb=(k,st)=>{const a=set.fbk[k];if(!a||!a.length)return null;return k=='ns'?a[(st.b?1:0)+(st.i?2:0)]:(k=='dev'||k=='ara')?a[st.b&&a[1]?1:0]:a[0]};
   return set}
 const safe=(f,s)=>[...s].map(ch=>{const c=ch.codePointAt(0);return f._cs.has(c)?ch:(c==160||c<32)?' ':'?'}).join('');
 function segs(F,st,text){
@@ -2897,7 +2997,7 @@ function layoutPara(b,maxW,env){
     if(a.k=='n'){if(!cur.sz)cur.sz=b.sz||11;flush();continue}
     if(a.k=='s'&&!cur.a.length&&!P.pre)continue;
     if(a.k!='s'&&cur.w+a.w>lim()&&cur.a.some(x=>x.k!='s'))flush();
-    if(a.k=='w'&&a.w>lim()){let s=a.t;while(s){let n=s.length;while(n>1&&wd(s.slice(0,n),a)>lim()-cur.w)n--;put({...a,t:s.slice(0,n),w:wd(s.slice(0,n),a)});s=s.slice(n);if(s)flush()}continue}
+    if(a.k=='w'&&a.w>lim()){let s=a.t;while(s){let n=s.length;if(wd(s,a)>lim()-cur.w){let lo=1,hi=s.length-1;while(lo<hi){const mid=Math.ceil((lo+hi)/2);if(wd(s.slice(0,mid),a)<=lim()-cur.w)lo=mid;else hi=mid-1}n=lo}put({...a,t:s.slice(0,n),w:wd(s.slice(0,n),a)});s=s.slice(n);if(s)flush()}continue}
     put(a)}
   if(cur.a.length||!lines.length){if(!cur.sz)cur.sz=b.sz||11;flush()}
   lines.forEach(l=>{if(!l.sz)l.sz=b.sz||11;l.asc=Math.max(l.sz*.9,l.ih);l.h=l.asc+l.sz*.3});
@@ -2945,7 +3045,7 @@ const roman=n=>{let s='';for(const[v,c]of[[1000,'M'],[900,'CM'],[500,'D'],[400,'
 const alpha=n=>{let s='';while(n>0){n--;s=String.fromCharCode(97+n%26)+s;n=Math.floor(n/26)}return s};
 const fmtN=(f,n)=>f=='lowerLetter'?alpha(n):f=='upperLetter'?alpha(n).toUpperCase():f=='lowerRoman'?roman(n).toLowerCase():f=='upperRoman'?roman(n):f=='decimalZero'?String(n).padStart(2,'0'):String(n);
 async function docxModel(f,media){
-  const m=await pkg(f,p=>/^word\/(document\.xml|styles\.xml|numbering\.xml|_rels\/document\.xml\.rels)$/.test(p)||(media&&/^word\/media\//.test(p)));
+  const m=await pkg(f,p=>/^word\/(document\.xml|styles\.xml|numbering\.xml|_rels\/document\.xml\.rels|(header|footer)\d*\.xml)$/.test(p)||(media&&/^word\/media\//.test(p)));
   const d=await xml(m,'word/document.xml');if(!d)throw 0;
   const sx=await xml(m,'word/styles.xml'),nx=await xml(m,'word/numbering.xml'),rx=await xml(m,'word/_rels/document.xml.rels');
   const ST={};let dR={sz:11,font:'h'},dP={},defP=null;
@@ -2973,10 +3073,16 @@ async function docxModel(f,media){
     if(h){if(S0.rpr.sz===undefined)b0.sz=h==1?24:[0,18,15,13][h];if(S0.rpr.b===undefined)b0.b=true}
     let lab=null;
     if(P.numId&&P.numId!='0'){const L=label(P.numId,P.ilvl||0);if(L){lab=L;if(L.p.left!=null&&pp.left==null)P.left=L.p.left;if(L.p.first!=null&&pp.first==null)P.first=L.p.first}}
-    const items=[];let hasC=false;
+    const items=[];let hasC=false,fst=0,ftok=null;
     for(const r of els(p,'r')){
       const rp=ch(r,'rPr'),rs=rp&&ch(rp,'rStyle'),st={...b0,...(rs?sty(attr(rs,'val')).rpr:{}),...rprOf(rp)};let buf='';
       const fl=()=>{if(buf){items.push({t:'text',text:buf,st});hasC=true;buf=''}};
+      const fc=ch(r,'fldChar');
+      if(fc){const ty=attr(fc,'fldCharType');if(ty=='begin'){fst=1;ftok=null}else if(ty=='separate'){fst=2;if(ftok){items.push({t:'text',text:'\uE000'+ftok+'\uE000',st});hasC=true}}else if(ty=='end'){fst=0;ftok=null}continue}
+      if(fst==1){const it0=ch(r,'instrText');if(it0){const tt=it0.textContent.toUpperCase();ftok=/NUMPAGES/.test(tt)?'NUMPAGES':/\bPAGE\b/.test(tt)?'PAGE':null}continue}
+      if(fst==2&&ftok)continue;
+      const par=r.parentNode;
+      if(par&&par.localName=='fldSimple'){const ins=(attr(par,'instr')||'').toUpperCase(),tk=/NUMPAGES/.test(ins)?'NUMPAGES':/\bPAGE\b/.test(ins)?'PAGE':null;if(tk){items.push({t:'text',text:'\uE000'+tk+'\uE000',st});hasC=true;continue}}
       for(const c of r.children){const l=c.localName;
         if(l=='t')buf+=c.textContent;else if(l=='tab')buf+='    ';else if(l=='noBreakHyphen')buf+='-';
         else if(l=='br'||l=='cr'){fl();if(attr(c,'type')=='page'){if(hasC)P.pba=true;else P.pbb=true}else items.push({t:'nl'})}
@@ -3000,7 +3106,12 @@ async function docxModel(f,media){
   let nb=0;for(const c of kids(body)){if(++nb%150==0)await tick();if(c.localName=='p')blocks.push(await para(c));else if(c.localName=='tbl')blocks.push(await tbl(c))}
   const sp=[...body.children].filter(c=>c.localName=='sectPr').pop(),pz=sp&&ch(sp,'pgSz'),pm=sp&&ch(sp,'pgMar'),tw20=(e,a,dv)=>e&&attr(e,a)?+attr(e,a)/20:dv;
   const page={w:tw20(pz,'w',612),h:tw20(pz,'h',792),ml:tw20(pm,'left',72),mr:tw20(pm,'right',72),mt:tw20(pm,'top',72),mb:tw20(pm,'bottom',72)};
-  return{blocks,page,imgs}}
+  const hf={};page.hdr=tw20(pm,'header',36);page.ftr=tw20(pm,'footer',36);
+  for(const c of sp?[...sp.children]:[]){
+    if(c.localName!='headerReference'&&c.localName!='footerReference')continue;if((attr(c,'type')||'default')!='default')continue;
+    const tg=rel[attr(c,'id')];if(!tg)continue;const hd=await xml(m,'word/'+tg.replace(/^\.\//,''));if(!hd)continue;
+    const bl=[];for(const e of kids(hd.documentElement)){if(e.localName=='p')bl.push(await para(e))}hf[c.localName=='headerReference'?'header':'footer']=bl}
+  return{blocks,page,imgs,hf}}
 function tableDraw(W,T,x0,w,env){
   let grid=T.grid.length?T.grid.slice():null;
   if(!grid){const n=Math.max(1,...T.trs.map(r=>r.cells.reduce((a,c)=>a+c.span,0)));grid=Array(n).fill(w/n)}
@@ -3019,77 +3130,16 @@ function tableDraw(W,T,x0,w,env){
     W.y=top-h}
   W.y-=6}
 async function docxPdf(M){
-  await lib('pdflib');const{PDFDocument}=PDFLib,doc=await PDFDocument.create(),keys=new Set();scanKeys(gatherText(M.blocks),keys);const F=await fontSet(doc,keys),pg=M.page;
+  await lib('pdflib');const{PDFDocument}=PDFLib,doc=await PDFDocument.create(),keys=new Set();scanKeys(gatherText([...M.blocks,...((M.hf&&M.hf.header)||[]),...((M.hf&&M.hf.footer)||[])]),keys);const F=await fontSet(doc,keys),pg=M.page;
   const W={doc,pw:pg.w,ph:pg.h,mb:pg.mb,mt:pg.mt};W.np=()=>{W.page=doc.addPage([W.pw,W.ph]);W.y=W.ph-W.mt};W.np();
   const emb=await embedImgs(doc,M.imgs),env={F,emb,maxH:pg.h-pg.mt-pg.mb-10},cw=pg.w-pg.ml-pg.mr;
   for(const b of M.blocks){
     if(b.type=='tbl'){tableDraw(W,b,pg.ml,cw,env);continue}
     if(b.P.pbb&&W.y<W.ph-W.mt-1)W.np();
+    if(b.items)b.items.forEach(i=>{if(i.text)i.text=i.text.replace(/\uE000\w+\uE000/g,'')});
     paraDraw(W,layoutPara(b,cw,env),pg.ml,cw,true);
     if(b.P.pba)W.np()}
-  return new Blob([await doc.save()],{type:'application/pdf'})}
-
-/* ===== PPTX (positioned) ===== */
-async function pptxModel(f){
-  const m=await pkg(f,p=>/^ppt\/(presentation\.xml|slides\/slide\d+\.xml|slides\/_rels\/slide\d+\.xml\.rels|media\/.*)$/.test(p));
-  const pr=await xml(m,'ppt/presentation.xml');let sw=720,sh=405;
-  if(pr){const z=els(pr,'sldSz')[0];if(z){sw=+attr(z,'cx')/12700;sh=+attr(z,'cy')/12700}}
-  const names=[...m.keys()].filter(k=>/^ppt\/slides\/slide\d+\.xml$/.test(k)).sort((a,b)=>a.match(/\d+/)[0]-b.match(/\d+/)[0]),slides=[];
-  for(const n of names){
-    const d=await xml(m,n);if(!d)continue;
-    const relx=await xml(m,n.replace('slides/','slides/_rels/')+'.rels'),rel={};if(relx)els(relx,'Relationship').forEach(r=>rel[attr(r,'Id')]=attr(r,'Target'));
-    const getImg=async rid=>{let t=rel[rid];if(!t)return null;t=t.replace(/^(\.\.\/)+/,'ppt/');const b=m.get(t);return b?{bytes:new Uint8Array(await b.arrayBuffer()),ext:ext(t)}:null};
-    const emu=v=>+v/12700,shapes=[],bgE=els(d,'bg')[0],bgc=bgE&&els(bgE,'srgbClr')[0];let light=false;
-    const tree=els(d,'spTree')[0];
-    const xf=(e,pe)=>{const x=pe&&(ch(pe,'xfrm')||els(pe,'xfrm')[0]);if(!x)return null;const o=ch(x,'off'),s=ch(x,'ext');return o&&s?{x:emu(attr(o,'x')),y:emu(attr(o,'y')),w:emu(attr(s,'cx')),h:emu(attr(s,'cy'))}:null};
-    for(const e of els(tree,'*')){
-      const l=e.localName;
-      if(l=='sp'){
-        const ph=els(e,'ph')[0],pt=ph&&(attr(ph,'type')||'body'),isT=!!pt&&/title/i.test(pt);
-        let box=xf(e,ch(e,'spPr'));
-        if(!box){if(!ph)continue;box=isT?{x:sw*.07,y:sh*.05,w:sw*.86,h:sh*.2}:pt=='subTitle'?{x:sw*.07,y:sh*.3,w:sw*.86,h:sh*.2}:{x:sw*.07,y:sh*.28,w:sw*.86,h:sh*.64}}
-        const tb=ch(e,'txBody');if(!tb)continue;
-        const na=els(tb,'normAutofit')[0],fsc=na&&attr(na,'fontScale')?+attr(na,'fontScale')/100000:1,paras=[];let num=0;
-        for(const p of[...tb.children].filter(c=>c.localName=='p')){
-          const pp=ch(p,'pPr'),al=pp&&attr(pp,'algn'),lvl=pp&&attr(pp,'lvl')?+attr(pp,'lvl'):0,bu=pp&&(ch(pp,'buChar')||ch(pp,'buAutoNum')),items=[];let label=null;
-          if(bu){label=ch(pp,'buAutoNum')?`${++num}.`:'\u2022'}else num=0;
-          const ep=ch(p,'endParaRPr'),defSz=(ep&&attr(ep,'sz')?+attr(ep,'sz')/100:isT?32:18)*fsc;
-          for(const r of p.children){
-            if(r.localName=='br'){items.push({t:'nl'});continue}
-            if(r.localName!='r'&&r.localName!='fld')continue;
-            const rp=ch(r,'rPr'),tt=ch(r,'t');if(!tt)continue;
-            const co=rp&&els(rp,'srgbClr')[0],col=co&&attr(co,'val');if(col&&/^[ef][0-9a-f][ef][0-9a-f][ef][0-9a-f]$/i.test(col))light=true;
-            items.push({t:'text',text:tt.textContent,st:{b:rp&&attr(rp,'b')=='1',i:rp&&attr(rp,'i')=='1',u:rp&&attr(rp,'u')&&attr(rp,'u')!='none',sz:(rp&&attr(rp,'sz')?+attr(rp,'sz')/100:isT?32:18)*fsc,color:col&&/^[0-9a-f]{6}$/i.test(col)?col:null}})}
-          paras.push({type:'p',P:{jc:al=='ctr'?'center':al=='r'?'right':'left',left:lvl*18+(label?14:0),first:label?-14:0,before:0,after:3,hang:14},items,label,sz:defSz})}
-        if(paras.some(p=>p.items.length))shapes.push({k:'text',box,paras})}
-      else if(l=='pic'){
-        const bl=els(e,'blip')[0],box=xf(e,ch(e,'spPr'));if(!bl||!box)continue;
-        const im=await getImg(attr(bl,'embed'));if(im)shapes.push({k:'img',box,im,rid:attr(bl,'embed')})}
-      else if(l=='graphicFrame'){
-        const tbl=els(e,'tbl')[0],box=xf(e,e);if(!tbl||!box)continue;
-        const cols=els(tbl,'gridCol').map(g=>emu(attr(g,'w'))),rows=els(tbl,'tr').map(tr=>({h:emu(attr(tr,'h')),cells:els(tr,'tc').map(tc=>els(tc,'t').map(t=>t.textContent).join(' '))}));
-        shapes.push({k:'tbl',box,cols,rows})}}
-    slides.push({shapes,bg:bgc&&/^[0-9a-f]{6}$/i.test(attr(bgc,'val'))?attr(bgc,'val'):(light?'1F2933':null)})}
-  if(!slides.length)throw 0;return{sw,sh,slides}}
-async function pptxPdf(M){
-  await lib('pdflib');const{PDFDocument,rgb}=PDFLib,doc=await PDFDocument.create(),keys=new Set();M.slides.forEach(sl=>sl.shapes.forEach(z=>{if(z.k=='text')scanKeys(gatherText(z.paras),keys);if(z.k=='tbl')z.rows.forEach(r=>r.cells.forEach(t=>scanKeys(t,keys)))}));const F=await fontSet(doc,keys),W={doc,pw:M.sw,ph:M.sh,mb:0,mt:0};
-  for(const s of M.slides){
-    const page=doc.addPage([M.sw,M.sh]);W.page=page;
-    if(s.bg)page.drawRectangle({x:0,y:0,width:M.sw,height:M.sh,color:rgbHex(s.bg)});
-    const map={};s.shapes.forEach(z=>{if(z.k=='img')map[z.rid]=z.im});const emb=await embedImgs(doc,map),env={F,emb,maxH:M.sh};
-    for(const z of s.shapes){const b=z.box;
-      if(z.k=='img'&&emb[z.rid]){page.drawImage(emb[z.rid],{x:b.x,y:M.sh-b.y-b.h,width:b.w,height:b.h})}
-      else if(z.k=='text'){
-        const mw=Math.max(20,b.w-14.4);let Ls;
-        for(let sc=1;sc>=.5;sc-=.1){
-          Ls=z.paras.map(p=>layoutPara({...p,sz:p.sz*sc,items:p.items.map(i=>i.t=='text'?{...i,st:{...i.st,sz:i.st.sz*sc}}:i)},mw,env));
-          if(Ls.reduce((a,L)=>a+paraH(L),0)<=b.h-4)break}
-        W.y=M.sh-b.y-3.6;Ls.forEach(L=>paraDraw(W,L,b.x+7.2,mw,false))}
-      else if(z.k=='tbl'){
-        let y=M.sh-b.y;const tot=z.cols.reduce((a,c)=>a+c,0)||1,sc=b.w/tot;
-        for(const r of z.rows){const rh=Math.max(r.h||18,16);let x=b.x;
-          r.cells.forEach((t,i)=>{const cw=(z.cols[i]||tot/r.cells.length)*sc;page.drawRectangle({x,y:y-rh,width:cw,height:rh,borderWidth:.5,borderColor:rgb(.5,.5,.5)});
-            const fs=Math.min(12,rh-6);let s=t;while(s.length>1&&runsW(F,{},s,fs)>cw-6)s=s.slice(0,-1);drawRuns(page,F,{},s,x+3,y-rh+(rh-fs)/2+1,fs);x+=cw});y-=rh}}}}
+  drawHF(doc,W,M,env,cw);
   return new Blob([await doc.save()],{type:'application/pdf'})}
 
 /* ===== office dispatcher ===== */
@@ -3147,10 +3197,31 @@ async function compressItem(it,ctx){
   if(k=='image'&&e!='gif'&&e!='svg')x=await cImage(f,r,ctx);
   else if(k=='audio'||k=='video')x=await cMedia(f,r,ctx,k=='video');
   else if(k=='pdf')x=await cPdf(f,r,ctx);
+  else if(['docx','xlsx','pptx'].includes(k))x=await cOffice(f,r,ctx);
   else if(TEXTKINDS.includes(k)||e=='svg')x=await cText(f);
   else x=await cOther(f);
   if(Array.isArray(x))x={b:x[0],name:x[1]};
   return x||{none:'No smaller version found.'}}
+
+const MP3W=`onmessage=function(e){try{var m=e.data,en=new lamejs.Mp3Encoder(m.ch,m.sr,128);function cv(a){var o=new Int16Array(a.length);for(var i=0;i<a.length;i++){var s=Math.max(-1,Math.min(1,a[i]));o[i]=s<0?s*32768:s*32767}return o}var L=cv(m.L),R=m.R?cv(m.R):null,parts=[];for(var i=0,k=0;i<L.length;i+=1152,k++){var d=R?en.encodeBuffer(L.subarray(i,i+1152),R.subarray(i,i+1152)):en.encodeBuffer(L.subarray(i,i+1152));if(d.length)parts.push(new Uint8Array(d));if(k%400==0)postMessage({p:i/L.length})}var f=en.flush();if(f.length)parts.push(new Uint8Array(f));postMessage({done:1,parts:parts})}catch(err){postMessage({err:String(err&&err.message||err)})}}`;
+async function mp3Blob(buf,ctx){
+  await lib('lame');
+  const ch=Math.min(2,buf.numberOfChannels),L=new Float32Array(buf.getChannelData(0)),R=ch>1?new Float32Array(buf.getChannelData(1)):null;
+  let w=null;
+  try{w=new Worker(URL.createObjectURL(new Blob([document.getElementById('lib-lame').textContent.replace(/<\\\/script/g,'<'+'/script')+'\n;'+MP3W],{type:'text/javascript'})))}catch(e){w=null}
+  if(!w)return mp3Main(buf,ctx);
+  return new Promise((ok,no)=>{
+    const done=()=>{clearInterval(iv);try{w.terminate()}catch(e){}},iv=setInterval(()=>{if(window.__cancel){done();no(new Error('Cancelled'))}},200);
+    w.onmessage=e=>{const m=e.data;if(m.p!=null)ctx.prog(m.p);else if(m.done){done();ok(new Blob(m.parts,{type:'audio/mpeg'}))}else if(m.err){done();no(new Error(m.err))}};
+    w.onerror=()=>{done();mp3Main(buf,ctx).then(ok,no)};
+    w.postMessage({sr:buf.sampleRate,ch,L,R},R?[L.buffer,R.buffer]:[L.buffer])})}
+
+function drawHF(doc,W,M,env,cw){
+  const hf=M.hf||{};if(!hf.header&&!hf.footer)return;const pages=doc.getPages(),pg=M.page,tot=pages.length;
+  const sub=(bl,n)=>bl.map(b=>({...b,items:b.items.map(i=>i.text?{...i,text:i.text.replace(/\uE000PAGE\uE000/g,String(n)).replace(/\uE000NUMPAGES\uE000/g,String(tot))}:i)}));
+  pages.forEach((p,i)=>{W.page=p;
+    if(hf.header){W.y=pg.h-(pg.hdr||36);for(const b of sub(hf.header,i+1))paraDraw(W,layoutPara(b,cw,env),pg.ml,cw,false)}
+    if(hf.footer){const Ls=sub(hf.footer,i+1).map(b=>layoutPara(b,cw,env)),h=Ls.reduce((a,L)=>a+paraH(L),0);W.y=(pg.ftr||36)+h;for(const L of Ls)paraDraw(W,L,pg.ml,cw,false)}})}
 
 /* ===== text-like documents to PDF via the shared engine ===== */
 const A4={w:595,h:842,ml:56,mr:56,mt:56,mb:56};
@@ -3214,6 +3285,130 @@ async function xlsxPdf(sh){
           x+=cw[c]}
         y=top-RH}}}
   if(!doc.getPageCount())np();
+  return new Blob([await doc.save()],{type:'application/pdf'})}
+
+/* ===== PPTX with theme colours, layouts, backgrounds and shapes ===== */
+const hex2=h=>[parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];
+const rgb2=a=>a.map(v=>Math.round(Math.max(0,Math.min(255,v))).toString(16).padStart(2,'0')).join('');
+function toHsl([r,g,b]){r/=255;g/=255;b/=255;const mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let h=0,s=0;if(mx!=mn){const d=mx-mn;s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx==r?(g-b)/d+(g<b?6:0):mx==g?(b-r)/d+2:(r-g)/d+4;h/=6}return[h,s,l]}
+function fromHsl([h,s,l]){const f=(p,q,t)=>{if(t<0)t+=1;if(t>1)t-=1;return t<1/6?p+(q-p)*6*t:t<1/2?q:t<2/3?p+(q-p)*(2/3-t)*6:p};let r,g,b;if(s==0)r=g=b=l;else{const q=l<.5?l*(1+s):l+s-l*s,p=2*l-q;r=f(p,q,h+1/3);g=f(p,q,h);b=f(p,q,h-1/3)}return rgb2([r*255,g*255,b*255])}
+function pclr(el,th){
+  let hex=null;const l=el.localName;
+  if(l=='srgbClr')hex=attr(el,'val');
+  else if(l=='schemeClr'){const n=attr(el,'val');hex=th[{tx1:'dk1',bg1:'lt1',tx2:'dk2',bg2:'lt2'}[n]||n]}
+  else if(l=='sysClr')hex=attr(el,'lastClr')||'000000';
+  else if(l=='prstClr')hex={black:'000000',white:'ffffff'}[attr(el,'val')]||'000000';
+  if(!hex||!/^[0-9a-f]{6}$/i.test(hex))return null;
+  let lm=null,lo=0;
+  for(const m of el.children){const v=+attr(m,'val')/100000;
+    if(m.localName=='lumMod')lm=v;else if(m.localName=='lumOff')lo=v;
+    else if(m.localName=='tint')hex=rgb2(hex2(hex).map(x=>x+(255-x)*(1-v)));
+    else if(m.localName=='shade')hex=rgb2(hex2(hex).map(x=>x*v))}
+  if(lm!==null||lo){const h=toHsl(hex2(hex));h[2]=Math.max(0,Math.min(1,h[2]*(lm===null?1:lm)+lo));hex=fromHsl(h)}
+  return hex}
+const fillOf=(sp,th)=>{if(!sp)return null;const sf=ch(sp,'solidFill');if(sf&&sf.children[0])return pclr(sf.children[0],th);const gf=ch(sp,'gradFill');if(gf){const gs=els(gf,'gs')[0];if(gs&&gs.children[0])return pclr(gs.children[0],th)}return null};
+const lightHex=h=>{if(!h)return false;const[r,g,b]=hex2(h);return(r*299+g*587+b*114)/1000>200};
+function xfOf(sp){const pr=ch(sp,'spPr')||ch(sp,'grpSpPr'),x=pr&&ch(pr,'xfrm')||ch(sp,'xfrm');if(!x)return null;const o=ch(x,'off'),s=ch(x,'ext');return o&&s?{x:+attr(o,'x')/12700,y:+attr(o,'y')/12700,w:+attr(s,'cx')/12700,h:+attr(s,'cy')/12700,flipV:attr(x,'flipV')=='1',flipH:attr(x,'flipH')=='1'}:null}
+const sameT=(a,b)=>a==b||(/title/i.test(a)&&/title/i.test(b));
+function findPh(doc,type,idx){
+  if(!doc)return null;
+  for(const sp of els(doc,'sp')){const ph=els(sp,'ph')[0];if(!ph)continue;const t=attr(ph,'type')||'body',i=attr(ph,'idx');
+    if((idx!=null&&i==idx&&sameT(t,type||t))||(idx==null&&sameT(t,type))){const x=xfOf(sp);if(x)return x}}
+  for(const sp of els(doc,'sp')){const ph=els(sp,'ph')[0];if(!ph)continue;const t=attr(ph,'type')||'body';if(sameT(t,type||'body')){const x=xfOf(sp);if(x)return x}}
+  return null}
+function bgHex(doc,th){
+  if(!doc)return null;const bg=els(doc,'bg')[0];if(!bg)return null;
+  const pr=ch(bg,'bgPr');if(pr){const f=fillOf(pr,th);if(f)return f}
+  const rf=ch(bg,'bgRef');if(rf&&rf.children[0])return pclr(rf.children[0],th);return null}
+function styleDef(master,kind,lvl,th){
+  const st=master&&els(master,kind)[0];if(!st)return{};const l=ch(st,'lvl'+(lvl+1)+'pPr')||ch(st,'lvl1pPr'),d=l&&ch(l,'defRPr'),bu=!!(l&&ch(l,'buChar'));if(!d)return{bu};
+  return{sz:attr(d,'sz')?+attr(d,'sz')/100:null,color:fillOf(d,th),bu}}
+async function pptxModel(f){
+  const m=await pkg(f,p=>/^ppt\/(presentation\.xml|slides\/slide\d+\.xml|slides\/_rels\/slide\d+\.xml\.rels|media\/.*|theme\/theme\d+\.xml|slideLayouts\/slideLayout\d+\.xml|slideLayouts\/_rels\/slideLayout\d+\.xml\.rels|slideMasters\/slideMaster\d+\.xml)$/.test(p));
+  const pr=await xml(m,'ppt/presentation.xml');let sw=720,sh=405;
+  if(pr){const z=els(pr,'sldSz')[0];if(z){sw=+attr(z,'cx')/12700;sh=+attr(z,'cy')/12700}}
+  const th={},tx=await xml(m,'ppt/theme/theme1.xml');
+  if(tx){const cs=els(tx,'clrScheme')[0];if(cs)for(const c of cs.children){const x=c.children[0];if(x)th[c.localName]=attr(x,'lastClr')||attr(x,'val')}}
+  const names=[...m.keys()].filter(k=>/^ppt\/slides\/slide\d+\.xml$/.test(k)).sort((a,b)=>a.match(/\d+/)[0]-b.match(/\d+/)[0]),slides=[],cache={};
+  const px=async p=>cache[p]||(cache[p]=await xml(m,p));
+  const res=(base,t)=>t.startsWith('/')?t.slice(1):new URL(t,'http://x/'+base).pathname.slice(1);
+  const relsOf=async p=>{const x=await xml(m,p.replace(/([^/]+)$/,'_rels/$1')+'.rels'),o={};if(x)els(x,'Relationship').forEach(r=>o[attr(r,'Id')]={t:attr(r,'Target'),ty:attr(r,'Type')||''});return o};
+  let idx=0;
+  for(const n of names){
+    idx++;const d=await xml(m,n);if(!d)continue;
+    const rel=await relsOf(n),dir=n.replace(/[^/]+$/,'');
+    let layout=null,master=null;
+    for(const k in rel)if(/slideLayout$/.test(rel[k].ty))layout=await px(res(dir,rel[k].t));
+    if(layout){const lp=Object.keys(m).length?null:null;const lrel=await relsOf([...m.keys()].find(k=>/slideLayouts\/slideLayout\d+\.xml$/.test(k)&&cache[k]===layout)||'');for(const k in lrel)if(/slideMaster$/.test(lrel[k].ty))master=await px(res('ppt/slideLayouts/',lrel[k].t))}
+    if(!master)master=await px([...m.keys()].find(k=>/slideMasters\/slideMaster\d+\.xml$/.test(k))||'');
+    const getImg=async rid=>{const r=rel[rid];if(!r)return null;const b=m.get(res(dir,r.t));return b?{bytes:new Uint8Array(await b.arrayBuffer()),ext:ext(r.t)}:null};
+    const emu=v=>+v/12700,shapes=[],tree=els(d,'spTree')[0];let light=false;
+    let bg=bgHex(d,th)||bgHex(layout,th)||bgHex(master,th);
+    for(const e of els(tree,'*')){
+      const l=e.localName;
+      if(l=='sp'){
+        const ph=els(e,'ph')[0],pt=ph&&(attr(ph,'type')||'body'),pidx=ph&&attr(ph,'idx'),isT=!!pt&&/title/i.test(pt);
+        let box=xfOf(e);
+        if(!box&&ph)box=findPh(layout,pt,pidx)||findPh(master,pt,null)||(isT?{x:sw*.07,y:sh*.05,w:sw*.86,h:sh*.2}:{x:sw*.07,y:sh*.28,w:sw*.86,h:sh*.64});
+        if(!box)continue;
+        const spr=ch(e,'spPr'),geomEl=spr&&ch(spr,'prstGeom'),geom=geomEl?attr(geomEl,'prst'):'',fill=spr&&!ch(spr,'noFill')?fillOf(spr,th):null,lnEl=spr&&ch(spr,'ln'),lnc=lnEl&&!ch(lnEl,'noFill')?fillOf(lnEl,th):null;
+        if(!ph&&(fill||lnc)&&geom!='')shapes.push({k:'shape',geom,box,fill,line:lnc,lw:lnEl&&attr(lnEl,'w')?+attr(lnEl,'w')/12700:1});
+        const tb=ch(e,'txBody');if(!tb)continue;
+        const na=els(tb,'normAutofit')[0],fsc=na&&attr(na,'fontScale')?+attr(na,'fontScale')/100000:1,paras=[];let num=0;
+        for(const p of[...tb.children].filter(c=>c.localName=='p')){
+          const pp=ch(p,'pPr'),al=pp&&attr(pp,'algn'),lvl=pp&&attr(pp,'lvl')?+attr(pp,'lvl'):0,sd=styleDef(master,isT?'titleStyle':ph?'bodyStyle':'otherStyle',lvl,th),bu=(pp&&(ch(pp,'buChar')||ch(pp,'buAutoNum')))||(ph&&!isT&&sd.bu&&!(pp&&ch(pp,'buNone'))),items=[];let label=null;
+          if(bu){label=pp&&ch(pp,'buAutoNum')?`${++num}.`:'\u2022'}else num=0;
+          const ep=ch(p,'endParaRPr'),dsz=((ep&&attr(ep,'sz')?+attr(ep,'sz')/100:sd.sz)||(isT?32:18))*fsc;
+          for(const r of p.children){
+            if(r.localName=='br'){items.push({t:'nl'});continue}
+            if(r.localName!='r'&&r.localName!='fld')continue;
+            const rp=ch(r,'rPr'),tt=ch(r,'t');if(!tt)continue;
+            let text=tt.textContent;if(r.localName=='fld'&&/slidenum/i.test(attr(r,'type')||''))text=String(idx);
+            const col=(rp&&fillOf(rp,th))||sd.color||null;if(lightHex(col))light=true;
+            items.push({t:'text',text,st:{b:rp&&attr(rp,'b')=='1',i:rp&&attr(rp,'i')=='1',u:rp&&attr(rp,'u')&&attr(rp,'u')!='none',sz:(rp&&attr(rp,'sz')?+attr(rp,'sz')/100:sd.sz||(isT?32:18))*fsc,color:col}})}
+          paras.push({type:'p',P:{jc:al=='ctr'?'center':al=='r'?'right':'left',left:lvl*18+(label?14:0),first:label?-14:0,before:0,after:3,hang:14},items,label,sz:dsz})}
+        if(paras.some(p=>p.items.length))shapes.push({k:'text',box,paras})}
+      else if(l=='pic'){
+        const bl=els(e,'blip')[0],box=xfOf(e);if(!bl||!box)continue;
+        const im=await getImg(attr(bl,'embed'));if(im)shapes.push({k:'img',box,im,rid:attr(bl,'embed')})}
+      else if(l=='cxnSp'){
+        const box=xfOf(e),spr=ch(e,'spPr'),lnEl=spr&&ch(spr,'ln'),c=lnEl&&fillOf(lnEl,th);if(!box)continue;
+        shapes.push({k:'line',box,color:c||'555555',lw:lnEl&&attr(lnEl,'w')?+attr(lnEl,'w')/12700:1})}
+      else if(l=='graphicFrame'){
+        const tbl=els(e,'tbl')[0],box=xfOf(e);if(!tbl||!box)continue;
+        const cols=els(tbl,'gridCol').map(g=>emu(attr(g,'w'))),rows=els(tbl,'tr').map(tr=>({h:emu(attr(tr,'h')),cells:els(tr,'tc').map(tc=>els(tc,'t').map(t=>t.textContent).join(' '))}));
+        shapes.push({k:'tbl',box,cols,rows})}}
+    slides.push({shapes,bg:bg||(light?'1F2933':null)})}
+  if(!slides.length)throw 0;return{sw,sh,slides}}
+async function pptxPdf(M){
+  await lib('pdflib');const{PDFDocument,rgb}=PDFLib,doc=await PDFDocument.create(),keys=new Set();
+  M.slides.forEach(sl=>sl.shapes.forEach(z=>{if(z.k=='text')scanKeys(gatherText(z.paras),keys);if(z.k=='tbl')z.rows.forEach(r=>r.cells.forEach(t=>scanKeys(t,keys)))}));
+  const F=await fontSet(doc,keys),W={doc,pw:M.sw,ph:M.sh,mb:0,mt:0};
+  for(const s of M.slides){
+    const page=doc.addPage([M.sw,M.sh]);W.page=page;
+    if(s.bg)page.drawRectangle({x:0,y:0,width:M.sw,height:M.sh,color:rgbHex(s.bg)});
+    const map={};s.shapes.forEach(z=>{if(z.k=='img')map[z.rid]=z.im});const emb=await embedImgs(doc,map),env={F,emb,maxH:M.sh};
+    for(const z of s.shapes){const b=z.box;
+      if(z.k=='shape'){
+        const o={color:z.fill?rgbHex(z.fill):undefined,borderColor:z.line?rgbHex(z.line):undefined,borderWidth:z.line?Math.max(.5,z.lw):0};
+        if(!z.fill&&!z.line)continue;
+        if(/ellipse|oval|circle/i.test(z.geom))page.drawEllipse({x:b.x+b.w/2,y:M.sh-b.y-b.h/2,xScale:b.w/2,yScale:b.h/2,...o});
+        else page.drawRectangle({x:b.x,y:M.sh-b.y-b.h,width:b.w,height:b.h,...o})}
+      else if(z.k=='line'){
+        const y1=z.box.flipV?M.sh-b.y:M.sh-b.y-b.h,y2=z.box.flipV?M.sh-b.y-b.h:M.sh-b.y;
+        page.drawLine({start:{x:b.x,y:y1},end:{x:b.x+b.w,y:y2},thickness:Math.max(.5,z.lw),color:rgbHex(z.color)})}
+      else if(z.k=='img'&&emb[z.rid]){page.drawImage(emb[z.rid],{x:b.x,y:M.sh-b.y-b.h,width:b.w,height:b.h})}
+      else if(z.k=='text'){
+        const mw=Math.max(20,b.w-14.4);let Ls;
+        for(let sc=1;sc>=.5;sc-=.1){
+          Ls=z.paras.map(p=>layoutPara({...p,sz:p.sz*sc,items:p.items.map(i=>i.t=='text'?{...i,st:{...i.st,sz:i.st.sz*sc}}:i)},mw,env));
+          if(Ls.reduce((a,L)=>a+paraH(L),0)<=b.h-4)break}
+        W.y=M.sh-b.y-3.6;Ls.forEach(L=>paraDraw(W,L,b.x+7.2,mw,false))}
+      else if(z.k=='tbl'){
+        let y=M.sh-b.y;const tot=z.cols.reduce((a,c)=>a+c,0)||1,sc=b.w/tot;
+        for(const r of z.rows){const rh=Math.max(r.h||18,16);let x=b.x;
+          r.cells.forEach((t,i)=>{const cw=(z.cols[i]||tot/r.cells.length)*sc;page.drawRectangle({x,y:y-rh,width:cw,height:rh,borderWidth:.5,borderColor:rgb(.5,.5,.5)});
+            const fs=Math.min(12,rh-6);let s2=t;while(s2.length>1&&runsW(F,{},s2,fs)>cw-6)s2=s2.slice(0,-1);drawRuns(page,F,{},s2,x+3,y-rh+(rh-fs)/2+1,fs);x+=cw});y-=rh}}}}
   return new Blob([await doc.save()],{type:'application/pdf'})}
 
 /* ===== create XLSX and DOCX ===== */
@@ -3290,12 +3485,12 @@ async function pdfClean(f){
 
 /* ===== recording media (compress, video to MP4) ===== */
 async function recordMedia(f,isVideo,o,ctx){
-  if(!window.MediaRecorder)throw new Error('This browser cannot re-encode media.');
-  const AC=window.AudioContext||window.webkitAudioContext,actx=new AC(),url=URL.createObjectURL(f),el=document.createElement(isVideo?'video':'audio');
+  if(!window.MediaRecorder||!getAC())throw new Error('This browser cannot re-encode media.');
+  const actx=getAC(),url=URL.createObjectURL(f),el=document.createElement(isVideo?'video':'audio');
   el.src=url;el.playsInline=true;el.preload='auto';let live=true,iv=null;
   try{
     await new Promise((ok,no)=>{el.onloadedmetadata=ok;el.onerror=()=>no(new Error('This browser cannot decode that file.'))});
-    const dur=isFinite(el.duration)&&el.duration>0?el.duration:1,vw=el.videoWidth||0,vh=el.videoHeight||0,bits=o.bits(dur,vw,vh),t0=o.start||0,t1=o.end!=null?Math.min(o.end,dur):dur,span=Math.max(.1,t1-t0);
+    const dur=isFinite(el.duration)&&el.duration>0?el.duration:1,vw=el.videoWidth||0,vh=el.videoHeight||0,bits=o.bits(dur,vw,vh);
     const src=actx.createMediaElementSource(el),dest=actx.createMediaStreamDestination();src.connect(dest);
     const tracks=[...dest.stream.getAudioTracks()];let canvas=null,g=null;
     if(isVideo){
@@ -3310,19 +3505,18 @@ async function recordMedia(f,isVideo,o,ctx){
     const rec=new MediaRecorder(new MediaStream(tracks),{mimeType:mt,audioBitsPerSecond:bits.ab,videoBitsPerSecond:bits.vb}),chunks=[];
     rec.ondataavailable=e=>e.data&&e.data.size&&chunks.push(e.data);
     const done=new Promise(ok=>rec.onstop=ok);
-    if(t0>0)await new Promise(ok=>{el.onseeked=ok;el.currentTime=t0});
     el.onended=()=>{live=false;if(rec.state!='inactive')rec.stop()};
-    rec.start(500);await actx.resume();
+    rec.start(500);try{await Promise.race([actx.resume(),new Promise(r=>setTimeout(r,2500))])}catch(e){}
+    if(actx.state!='running'){live=false;if(rec.state!='inactive')rec.stop();throw new Error('The browser blocked audio. Click the button again to retry.')}
     try{await el.play()}catch(e){live=false;if(rec.state!='inactive')rec.stop();throw new Error('The browser blocked playback. Click again to retry.')}
     if(canvas){const draw=()=>{if(!live)return;g.drawImage(el,0,0,canvas.width,canvas.height);el.requestVideoFrameCallback?el.requestVideoFrameCallback(draw):requestAnimationFrame(draw)};draw()}
-    iv=setInterval(()=>{ctx.prog(Math.min(.99,Math.max(0,el.currentTime-t0)/span));ctx.say(`Encoding\u2026 ${Math.min(99,Math.round(Math.max(0,el.currentTime-t0)/span*100))}% (runs in real time)`);
-      if(window.__cancel){live=false;try{el.pause()}catch(e){}if(rec.state!='inactive')rec.stop()}
-      if(o.end!=null&&el.currentTime>=t1){live=false;try{el.pause()}catch(e){}if(rec.state!='inactive')rec.stop()}},150);
+    iv=setInterval(()=>{ctx.prog(Math.min(.99,el.currentTime/dur));ctx.say(`Encoding\u2026 ${Math.min(99,Math.round(el.currentTime/dur*100))}% (runs in real time)`);
+      if(window.__cancel){live=false;try{el.pause()}catch(e){}if(rec.state!='inactive')rec.stop()}},400);
     await done;clearInterval(iv);iv=null;
     if(window.__cancel)throw new Error('Cancelled');
     const ext=mt.includes('mp4')?'mp4':mt.includes('ogg')?'ogg':'webm';
     return{b:new Blob(chunks,{type:mt.split(';')[0]}),ext}
-  }finally{live=false;if(iv)clearInterval(iv);try{el.pause()}catch(e){}URL.revokeObjectURL(url);actx.close()}}
+  }finally{live=false;if(iv)clearInterval(iv);try{el.pause()}catch(e){}URL.revokeObjectURL(url)}}
 async function cMedia(f,r,ctx,isVideo){
   const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
   const x=await recordMedia(f,isVideo,{mp4:false,bits:(dur)=>{const tgt=f.size*8/dur*r,ab=isVideo?clamp(tgt*.2,24e3,96e3):clamp(tgt,16e3,128e3);return{ab,vb:Math.max(60e3,tgt-ab)}}},ctx);
@@ -3344,6 +3538,25 @@ async function videoToGif(f,ctx){
       gif.writeFrame(ix,w,h,{palette:pal,delay:Math.round(1000/fps),repeat:0});ctx.prog((i+1)/n);ctx.say(`Frame ${i+1} of ${n}\u2026`);await tick()}
     gif.finish();return[new Blob([gif.bytes()],{type:'image/gif'}),base(f.name)+'.gif']
   }finally{URL.revokeObjectURL(url)}}
+
+/* ===== shrink images inside Word, Excel and PowerPoint files ===== */
+async function cOffice(f,r,ctx){
+  const ents=await unzip(f),imgs=ents.filter(e=>/\/media\/[^/]+\.(jpe?g|png)$/i.test(e[2]));
+  if(!imgs.length)return{none:'This file contains no pictures, so there is nothing to shrink. Office files are already compressed.'};
+  const target=f.size*r,tries=[[1,.8],[.85,.65],[.7,.5],[.55,.4],[.4,.3],[.3,.25]],ext0=ext(f.name),mime={docx:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',xlsx:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',pptx:'application/vnd.openxmlformats-officedocument.presentationml.presentation'}[ext0]||'application/zip';
+  let best=null,n=0;
+  for(const[k,q]of tries){
+    ctx.say(`Shrinking ${imgs.length} picture${imgs.length>1?'s':''} (attempt ${++n} of ${tries.length})\u2026`);ctx.prog(n/tries.length);
+    const out=[];
+    for(const e of ents){
+      if(!imgs.includes(e)){out.push([e[0],e[2]]);continue}
+      try{const isJ=/jpe?g$/i.test(e[2]),file=new File([e[0]],e[1],{type:isJ?'image/jpeg':'image/png'}),im=await decodeImg(file),w=Math.max(1,Math.round((im.naturalWidth||im.width)*k)),h=Math.max(1,Math.round((im.naturalHeight||im.height)*k)),c=document.createElement('canvas');c.width=w;c.height=h;
+        const g=c.getContext('2d');if(isJ){g.fillStyle='#fff';g.fillRect(0,0,w,h)}g.drawImage(im,0,0,w,h);
+        const nb=await cblob(c,isJ?'image/jpeg':'image/png',q);out.push([nb.size<e[0].size?nb:e[0],e[2]])}
+      catch(err){out.push([e[0],e[2]])}
+      await tick()}
+    const z=new Blob([await zipMany(out)],{type:mime});if(!best||z.size<best.size)best=z;if(z.size<=target)break}
+  return{b:best,name:base(f.name)+'-small.'+ext0,note:'Only the pictures inside were shrunk; text and layout are unchanged.'}}
 
 function ocrEngine(Core){
   let M=null,api=null;
@@ -3367,7 +3580,7 @@ const OCR=!!document.getElementById('lib-ocrcore');
 const b64u8=id=>Uint8Array.from(atob(document.getElementById(id).textContent.trim()),c=>c.charCodeAt(0));
 async function ocrOpen(langs){
   const langData={};
-  for(const l of langs.split('+')){if(!document.getElementById('lib-lang-'+l))throw new Error('OCR language not included: '+l);langData[l]=b64u8('lib-lang-'+l)}
+  for(const l of langs.split('+')){if(document.getElementById('lib-lang-'+l))langData[l]=b64u8('lib-lang-'+l);else if(PACKS.ocr[l])langData[l]=await gunzipB64(PACKS.ocr[l]);else throw new Error('The OCR language "'+(OCRNAMES[l]||l)+'" is not installed. Add its pack under Add-ons.')}
   const core=document.getElementById('lib-ocrcore').textContent.replace(/<\\\/script/g,'<'+'/script');
   let w=null;
   try{
@@ -3391,7 +3604,7 @@ async function pdfOcr(f,mode,ctx){
   ctx.say('Starting OCR engine\u2026');const eng=await ocrOpen(langs);
   let out=null,F=null;const texts=[];
   try{
-    if(mode=='pdf'){await lib('pdflib');out=await PDFLib.PDFDocument.create();const keys=new Set(['ns']);if(/hin/.test(langs))keys.add('dev');F=await fontSet(out,keys)}
+    if(mode=='pdf'){await lib('pdflib');out=await PDFLib.PDFDocument.create();const keys=new Set(['ns']);for(const l of langs.split('+')){({hin:['dev'],mar:['dev'],guj:['guj'],ben:['ben'],tam:['tam'],tel:['tel'],kan:['kan'],mal:['mal'],pan:['gur'],ara:['ara'],urd:['ara'],chi_sim:['cjk'],chi_tra:['cjk'],jpn:['cjk','jpn'],kor:['kor','cjk']}[l]||[]).forEach(k=>keys.add(k))}F=await fontSet(out,keys)}
     for(let i=1;i<=n;i++){
       ctx.say(`Recognizing page ${i} of ${n}\u2026`);
       const{c,pw,ph}=await renderPage(await d.getPage(i),2600,4.2),png=new Uint8Array(await(await cblob(c,'image/png')).arrayBuffer()),r=await eng.rec(png);
@@ -3407,40 +3620,31 @@ async function pdfOcr(f,mode,ctx){
   return[new Blob([await out.save()],{type:'application/pdf'}),b+'-searchable.pdf']}
 
 /* ===== UI ===== */
+const IC=(p)=>`<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const ICONS={image:IC('<rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M4 18l5-5 4 4 3-3 4 4"/>'),doc:IC('<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6M10 17h6"/>'),audio:IC('<path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>'),video:IC('<rect x="3" y="5" width="14" height="14" rx="3"/><path d="M17 10l4-2.5v9L17 14z"/>'),table:IC('<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16M15 4v16"/>'),slides:IC('<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>'),zip:IC('<path d="M4 4h16v4H4zM5 8h14v12H5z"/><path d="M12 12v4"/>'),code:IC('<path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/>')};
+const KI={image:['image','47,123,246'],pdf:['doc','229,72,77'],audio:['audio','139,92,246'],video:['video','249,115,22'],docx:['doc','79,107,237'],odt:['doc','79,107,237'],md:['doc','79,107,237'],text:['doc','79,107,237'],html:['code','13,148,136'],xlsx:['table','22,163,74'],csv:['table','22,163,74'],tsv:['table','22,163,74'],json:['code','13,148,136'],yaml:['code','13,148,136'],xml:['code','13,148,136'],pptx:['slides','245,158,11'],zip:['zip','161,98,7'],gz:['zip','161,98,7'],other:['doc','100,116,139']};
+const kinfo=it=>{const k=KI[it.kind]||KI.other;return{svg:ICONS[k[0]],rgb:k[1]}};
 let items=[],uid=0,urls=[],STOP=false;
-function setBusy(it,b){const r=q1(it.id);if(!r)return;const g=r.querySelector('[data-go]'),c=r.querySelector('[data-cancel]');if(g)g.disabled=b;if(c)c.hidden=!b;const cg=r.querySelector('[data-cutgo]');if(cg)cg.disabled=b}
+function setBusy(it,b){const r=q1(it.id);if(!r)return;const g=r.querySelector('[data-go]'),c=r.querySelector('[data-cancel]');if(g)g.disabled=b;if(c)c.hidden=!b}
 function cmpHtml(it,x){
+  if(it.kind=='audio'||it.kind=='video'){const t=it.kind=='audio'?'audio':'video',el=u=>`<${t} controls preload="metadata" src="${u}"${t=='video'?' width="200"':''}></${t}>`;return`<div class="cmp"><figure>${el(mkUrl(it.file))}<figcaption>Original</figcaption></figure><figure>${el(mkUrl(x.b))}<figcaption>Compressed</figcaption></figure></div>`}
   if(it.kind!='image'||!/\.(png|jpe?g|webp|gif|svg|bmp)$/i.test(it.file.name)||!/\.(png|jpe?g|webp)$/i.test(x.name))return'';
   return`<div class="cmp"><figure><img src="${mkUrl(it.file)}" alt="Original image"><figcaption>Original</figcaption></figure><figure><img src="${mkUrl(x.b)}" alt="Compressed image"><figcaption>Compressed</figcaption></figure></div>`}
 const BIG=150*1048576;
 const q1=(id)=>document.querySelector('[data-id="'+id+'"]');
 const meta=it=>{const kk=it.kind=='other'?'FILE':it.kind=='gz'?'GZ ARCHIVE':it.kind.toUpperCase();
   return kk+' \u00b7 '+size(it.file.size)+(S.mode=='compress'&&it.kind!='gz'?' \u00b7 target \u2248 '+size(Math.round(it.file.size*ratioOf(it))):'')};
-const cutOf=it=>it.cut||(it.cut=Object.assign({m:'cut',n:60,sil:.7,db:-40,fmt:'mp3'},S.cutPref||{},{s:0,e:0}));
-const cutPanel=it=>{if(S.mode=='compress'||(it.kind!='audio'&&it.kind!='video'))return'';
-  const c=cutOf(it),v=it.kind=='video',id=it.id,U=it.purl||(it.purl=mkUrl(it.file)),sel=(k,o)=>`<select data-c="${id}:${k}" aria-label="${k}">${o.map(([a,b])=>`<option value="${a}"${String(c[k])==a?' selected':''}>${b}</option>`).join('')}</select>`,
-  fld=(k,l,st)=>`<label>${l} <input type="number" min="0" step="${st}" value="${c[k]}" data-c="${id}:${k}" style="width:84px"></label>`,
-  pl=v?`<video controls playsinline preload="metadata" src="${U}" data-pl="${id}" style="width:100%;max-height:240px;background:#000;border-radius:8px"></video>`:`<audio controls preload="metadata" src="${U}" data-pl="${id}" style="width:100%"></audio>`,
-  vis=m=>c.m==m?'':' hidden';
-  return `<div class="cut"><b>Cut or split this ${it.kind}</b>${pl}
-  <div class="row"><label>What to do ${sel('m',[['cut','Cut one section'],['splitn','Split every N seconds'],['autosplit','Auto-split on pauses']])}</label></div>
-  <div class="row" data-cm="cut"${vis('cut')}>${fld('s','Start (s)',.1)}<button data-setfrom="${id}:s">Use player position</button>${fld('e','End (s, 0 = end)',.1)}<button data-setfrom="${id}:e">Use player position</button></div>
-  <div class="row" data-cm="splitn"${vis('splitn')}>${fld('n','Make a piece every (s)',1)}</div>
-  <div class="row" data-cm="autosplit"${vis('autosplit')}>${fld('sil','Split at pauses of at least (s)',.1)}<label>quieter than ${sel('db',[['-30','-30 dB (noisy room)'],['-40','-40 dB'],['-50','-50 dB (very quiet)']])}</label></div>
-  ${v?'':`<div class="row"><label>Save as ${sel('fmt',[['mp3','MP3'],['wav','WAV']])}</label></div>`}
-  <div class="row"><button class="pri" data-cutgo="${id}"${it.busy?' disabled':''}>${cutLabel(c.m)}</button><span class="meta">${v?'Video pieces are re-recorded in real time, so they take as long as the video.':''}</span></div></div>`};
 function render(){
   const cm=S.mode=='compress';
   $('#empty').hidden=items.length>0;$('#clear').hidden=!items.length;
   $('#runall').hidden=items.length<2;$('#runall').textContent=cm?'Compress all':'Convert all';
   $('#merge').hidden=cm||items.filter(i=>i.kind=='image'||i.kind=='pdf').length<2;
-  $('#zipall').hidden=items.length<2;
+  $('#zipall').hidden=items.length<2;const na=items.filter(i=>i.kind=='audio'||i.kind=='video').length;$('#joinaudio').hidden=na<2;$('#joinfmt').hidden=na<2;$('#compare').hidden=!(items.length==2&&items[0].kind==items[1].kind&&(items[0].kind=='pdf'||items[0].kind=='image'));
   $('#dlall').hidden=!items.some(i=>i.res&&i.res.length);
-  $('#list').innerHTML=items.map((it,ix)=>`<div class="f" data-id="${it.id}"><div class="top"><div><div class="nm">${esc(it.file.name)}</div><div class="meta">${meta(it)}</div></div>
-  <div class="ctl"><button class="x" data-up="${it.id}" aria-label="Move ${esc(it.file.name)} up"${ix==0?' disabled':''}>\u2191</button><button class="x" data-dn="${it.id}" aria-label="Move ${esc(it.file.name)} down"${ix==items.length-1?' disabled':''}>\u2193</button><button class="x" data-rm="${it.id}" aria-label="Remove ${esc(it.file.name)}">\u00d7</button></div></div>
-  ${cutPanel(it)}
+  $('#list').innerHTML=items.map((it,ix)=>`<div class="f" data-id="${it.id}" style="--kc:${kinfo(it).rgb}"><div class="ft" aria-hidden="true">${kinfo(it).svg}</div><div class="fm"><div class="nm">${esc(it.file.name)}</div><div class="meta">${meta(it)}</div></div>
+  <div class="ctl"><button class="x" data-up="${it.id}" aria-label="Move ${esc(it.file.name)} up"${ix==0?' disabled':''}>\u2191</button><button class="x" data-dn="${it.id}" aria-label="Move ${esc(it.file.name)} down"${ix==items.length-1?' disabled':''}>\u2193</button><button class="x" data-rm="${it.id}" aria-label="Remove ${esc(it.file.name)}">\u00d7</button></div>
   <div class="row">${cm?'':`<label class="meta" for="s${it.id}">Convert to</label><select id="s${it.id}" data-sel="${it.id}">${opts(it).map(o=>`<option value="${o}"${it.target==o?' selected':''}>${LBL[o]||o}</option>`).join('')}</select>`}
-  <button class="pri" data-go="${it.id}"${it.busy?' disabled':''}>${cm?(it.kind=='gz'?'Restore':'Compress'):'Convert'}</button>${it.kind=='pdf'?`<button data-edit="${it.id}">Edit pages</button>`:''}<button data-cancel="${it.id}"${it.busy?'':' hidden'}>Cancel</button><span class="st ${it.cls||''}" aria-live="polite">${it.out||''}</span></div>
+  <button class="pri" data-go="${it.id}"${it.busy?' disabled':''}>${cm?(it.kind=='gz'?'Restore':'Compress'):'Convert'}</button>${it.kind=='pdf'?`<button data-edit="${it.id}">Edit pages</button>`:''}${(it.kind=='audio'||it.kind=='video')?`<button data-aedit="${it.id}">Edit audio</button>`:''}<button data-cancel="${it.id}"${it.busy?'':' hidden'}>Cancel</button><span class="st ${it.cls||''}" aria-live="polite">${it.out||''}</span></div>
   <div class="pb"${it.p===undefined?' hidden':''}><i></i></div></div>`).join('')}
 function setP(it,x){it.p=x;const e=q1(it.id)&&q1(it.id).querySelector('.pb');if(!e)return;e.hidden=x===undefined;e.classList.toggle('ind',x===null);e.firstElementChild.style.width=typeof x=='number'?Math.round(Math.max(0,Math.min(1,x))*100)+'%':''}
 function status(it,h,cls){it.out=h;it.cls=cls||'';const e=q1(it.id)&&q1(it.id).querySelector('.st');if(e){e.innerHTML=h;e.className='st '+(cls||'')}}
@@ -3458,18 +3662,18 @@ async function run(it,o={}){
   const ctx={prog:x=>setP(it,x),say:m=>status(it,esc(m))};window.__prog=ctx.prog;
   try{
     if(S.mode=='convert'){
-      const t=it.job||it.target||opts(it)[0],r=await convert(it,t,ctx),res=Array.isArray(r[0])?r:[r];
-      it.res=res;status(it,await links(res,base(it.file.name)+'-files.zip'));const nt=res.map(r=>r[2]).filter(Boolean);if(nt.length)status(it,it.out+'<br>'+esc(nt[0]),'warn');
+      const t=it.target||opts(it)[0],r=await convert(it,t,ctx),res=Array.isArray(r[0])?r:[r];
+      it.res=res;status(it,await links(res,base(it.file.name)+'-files.zip'),'ok');const nt=res.map(r=>r[2]).filter(Boolean);if(nt.length)status(it,it.out+'<br>'+esc(nt[0]),'warn');
       if(o.auto&&res.length==1)dl(mkUrl(res[0][0]),res[0][1])}
     else{
       const x=await compressItem(it,ctx);
       if(x.none){status(it,esc(x.none),'warn')}
-      else if(x.restore){it.res=[[x.b,x.name]];status(it,await links(it.res,'x.zip'));if(o.auto)dl(mkUrl(x.b),x.name)}
+      else if(x.restore){it.res=[[x.b,x.name]];status(it,await links(it.res,'x.zip'),'ok');if(o.auto)dl(mkUrl(x.b),x.name)}
       else if(!x.b||x.b.size>=it.file.size){status(it,'No smaller version found. This file is already as compact as this tool can make it.','warn')}
       else{
         const r=ratioOf(it),saved=Math.round((1-x.b.size/it.file.size)*100),hit=x.b.size<=it.file.size*r*1.02;it.res=[[x.b,x.name]];
         status(it,`<a href="${mkUrl(x.b)}" download="${esc(x.name)}">Download ${esc(x.name)}</a> ${size(it.file.size)} \u2192 ${size(x.b.size)}, ${saved}% smaller`
-          +(x.note?`<br>${esc(x.note)}`:'')+(hit?'':`<br>Target not reached for this file.`)+cmpHtml(it,x),hit&&!x.note?'':'warn');
+          +(x.note?`<br>${esc(x.note)}`:'')+(hit?'':`<br>Target not reached for this file.`)+cmpHtml(it,x),hit&&!x.note?'ok':'warn');
         if(o.auto)dl(mkUrl(x.b),x.name)}}
   }catch(e){const cn=e&&e.message=='Cancelled',old=e&&/(Compression|Decompression)Stream/.test(e.message||'');status(it,cn?'Cancelled.':old?'This browser is too old for ZIP and GZIP. Update to Safari 16.4 or newer.':esc(e&&e.message?e.message:'Something went wrong.'),cn?'warn':'err')}
   finally{it.busy=false;setBusy(it,false);setP(it,undefined);$('#dlall').hidden=!items.some(i=>i.res&&i.res.length)}}
@@ -3481,6 +3685,18 @@ async function doMerge(){
   try{const b=await mergePdf(sel,{prog:x=>setBatch(`Merging\u2026 ${Math.round(x*100)}%`)});
     const left=items.length-sel.length;await showBatch([[b,'merged.pdf']],left?`${left} other file${left>1?'s were':' was'} left out. Merge uses the order shown below.`:'Merged in the order shown below.')}
   catch(e){setBatch(esc(e&&e.message?e.message:'Merge failed.'),'err')}}
+async function doJoinAudio(){
+  const sel=items.filter(i=>i.kind=='audio'||i.kind=='video');if(sel.length<2)return;
+  window.__cancel=false;setBatch('Reading audio\u2026');await tick();
+  try{
+    const bufs=[];for(let i=0;i<sel.length;i++){setBatch(`Reading audio ${i+1} of ${sel.length}\u2026`);bufs.push(await decodeAudio(sel[i].file))}
+    const sr=bufs[0].sampleRate,ch=Math.max(...bufs.map(b=>b.numberOfChannels));if(bufs.some(b=>b.sampleRate!=sr))throw new Error('The files have different sample rates.');
+    let len=0;bufs.forEach(b=>len+=b.length);const chs=[...Array(ch)].map(()=>new Float32Array(len));let o=0;
+    for(const b of bufs){for(let c=0;c<ch;c++)chs[c].set(b.getChannelData(Math.min(c,b.numberOfChannels-1)),o);o+=b.length}
+    const buf={numberOfChannels:ch,length:len,sampleRate:sr,getChannelData:i=>chs[i]},fmt=$('#joinfmt').value;
+    setBatch('Encoding\u2026');const blob=fmt=='mp3'?await mp3Blob(buf,{prog:p=>setBatch(`Encoding MP3\u2026 ${Math.round(p*100)}%`)}):await wavBlob(buf);
+    await showBatch([[blob,'joined.'+fmt]],'Joined in the order shown in the list.')}
+  catch(e){setBatch(esc(e&&e.message?e.message:'Could not join the audio.'),'err')}}
 async function doZipAll(){
   setBatch('Zipping\u2026');await tick();
   try{await showBatch([[await zipMany(items.map(i=>[i.file,i.file.name])),'files.zip']])}catch(e){setBatch(esc(e.message),'err')}}
@@ -3513,14 +3729,15 @@ document.addEventListener('paste',e=>{
   const fs=[...((e.clipboardData&&e.clipboardData.files)||[])];if(!fs.length)return;e.preventDefault();
   add(fs.map((f,i)=>f.name&&f.name!='image.png'?f:new File([f],'pasted-'+Date.now()+(fs.length>1?'-'+(i+1):'')+'.'+((f.type.split('/')[1])||'png'),{type:f.type})))});
 $('#list').onclick=e=>{
-  const g=e.target.closest('[data-go]'),r=e.target.closest('[data-rm]'),u=e.target.closest('[data-up]'),d=e.target.closest('[data-dn]'),ed=e.target.closest('[data-edit]'),cn=e.target.closest('[data-cancel]');
+  const g=e.target.closest('[data-go]'),r=e.target.closest('[data-rm]'),u=e.target.closest('[data-up]'),d=e.target.closest('[data-dn]'),ed=e.target.closest('[data-edit]'),cn=e.target.closest('[data-cancel]'),ae=e.target.closest('[data-aedit]');
   if(cn){window.__cancel=true;STOP=true}
+  else if(ae)openAed(items.find(i=>i.id==ae.dataset.aedit));
   else if(ed)openPed(items.find(i=>i.id==ed.dataset.edit));
   else if(g)run(items.find(i=>i.id==g.dataset.go),{auto:true});
   else if(r){items=items.filter(i=>i.id!=r.dataset.rm);render()}
   else if(u||d){const id=+(u||d).dataset[u?'up':'dn'],i=items.findIndex(x=>x.id==id),j=u?i-1:i+1;if(j>=0&&j<items.length){[items[i],items[j]]=[items[j],items[i]];render();const nb=document.querySelector(`[data-${u?'up':'dn'}="${id}"]`);nb&&!nb.disabled&&nb.focus()}}};
 $('#list').onchange=e=>{const s=e.target.closest('[data-sel]');if(s){const it=items.find(i=>i.id==s.dataset.sel);if(it){it.target=s.value;S.targets=S.targets||{};S.targets[it.kind]=s.value;saveS()}}};
-$('#runall').onclick=runAll;$('#merge').onclick=doMerge;$('#zipall').onclick=doZipAll;$('#dlall').onclick=doDlAll;
+$('#compare').onclick=()=>{if(items.length==2)openCompare(items[0],items[1])};$('#joinaudio').onclick=doJoinAudio;$('#runall').onclick=runAll;$('#merge').onclick=doMerge;$('#zipall').onclick=doZipAll;$('#dlall').onclick=doDlAll;
 $('#clear').onclick=()=>{items=[];urls.forEach(u=>URL.revokeObjectURL(u));urls=[];setBatch('');render()};
 
 /* settings */
@@ -3542,21 +3759,26 @@ $('#keep').onchange=e=>{S.keep=e.target.checked;saveS()};
 $('#keepText').onchange=e=>{S.keepText=e.target.checked;saveS()};
 $('#gifw').onchange=e=>{S.gifw=+e.target.value;saveS()};$('#giffps').onchange=e=>{S.giffps=+e.target.value;saveS()};$('#gifmax').onchange=e=>{S.gifmax=+e.target.value;saveS()};
 $('#ocrlang').onchange=e=>{S.ocrlang=e.target.value;saveS()};
-const cutLabel=m=>m=='cut'?'Cut this section':m=='splitn'?'Split into pieces':'Auto-split on pauses';
-$('#list').addEventListener('change',e=>{const el=e.target.closest('[data-c]');if(!el)return;const[id,k]=el.dataset.c.split(':'),it=items.find(x=>x.id==id);if(!it)return;
-  const c=cutOf(it);c[k]=['m','db','fmt'].includes(k)?el.value:(+el.value||0);
-  if(k=='m'){const pn=el.closest('.cut');pn.querySelectorAll('[data-cm]').forEach(d=>d.hidden=d.dataset.cm!=c.m);pn.querySelector('[data-cutgo]').textContent=cutLabel(c.m)}
-  S.cutPref={m:c.m,n:c.n,sil:c.sil,db:c.db,fmt:c.fmt};saveS()});
-$('#list').addEventListener('click',e=>{const sf=e.target.closest('[data-setfrom]'),go=e.target.closest('[data-cutgo]');
-  if(sf){const[id,k]=sf.dataset.setfrom.split(':'),it=items.find(x=>x.id==id),pn=sf.closest('.cut'),pl=pn.querySelector('[data-pl]'),t=Math.round(pl.currentTime*10)/10;
-    if(it){cutOf(it)[k]=t;pn.querySelector('[data-c="'+id+':'+k+'"]').value=t}}
-  if(go){const it=items.find(x=>x.id==go.dataset.cutgo);if(it){it.job=cutOf(it).m;run(it).finally(()=>{delete it.job})}}});
 if(OCR)$('#ocr-box').hidden=false;
 if(!CAP.webp){const o=$('#webpnote');if(o)o.hidden=false}
+const askText=label=>new Promise(res=>{const d=$('#askd');$('#ask-l').textContent=label;$('#ask-i').value='';try{d.showModal()}catch(e){d.setAttribute('open','')}
+  const done=v=>{try{d.close()}catch(e){d.removeAttribute('open')}res(v)};
+  $('#ask-ok').onclick=()=>done($('#ask-i').value.trim());$('#ask-no').onclick=()=>done(null);$('#ask-i').onkeydown=e=>{if(e.key=='Enter')done($('#ask-i').value.trim());if(e.key=='Escape')done(null)};setTimeout(()=>$('#ask-i').focus(),50)});
+const PRE={email:{set:{mode:'compress',cmode:'size',tsize:1,tunit:'MB'}},tiny:{set:{mode:'compress',cmode:'pct',pct:90}},web:{set:{mode:'convert',resize:1600,quality:80},t:{image:CAP.webp?'webp':'jpg'}},social:{set:{mode:'convert',resize:1080,quality:85},t:{image:'jpg'}},voice:{set:{mode:'convert'},t:{audio:'mp3',video:'mp3'}},archive:{set:{mode:'convert'},t:null}};
+const KINDS=['image','pdf','audio','video','docx','xlsx','pptx','odt','json','csv','tsv','xml','yaml','md','html','text','other','gz'];
+const retarget=()=>items.forEach(it=>{const x=(S.targets||{})[it.kind];if(x&&opts(it).includes(x))it.target=x});
+function applyPreset(k){const p=PRE[k];if(!p)return;Object.assign(S,p.set);S.targets={...(S.targets||{}),...(p.t===null?Object.fromEntries(KINDS.map(x=>[x,'zip'])):(p.t||{}))};retarget();saveS();syncUI();render()}
+$('#preset').onchange=e=>{applyPreset(e.target.value);e.target.value=''};
+const PKEYS=['mode','pct','cmode','tsize','tunit','keep','keepText','resize','quality','gifw','giffps','gifmax','ocrlang'];
+function profUI(){const n=Object.keys(S.profiles||{}),sel=$('#prof-sel');sel.hidden=!n.length;$('#prof-lab').hidden=!n.length;$('#prof-del').hidden=!n.length;sel.innerHTML='<option value="">Choose\u2026</option>'+n.map(x=>`<option>${esc(x)}</option>`).join('')}
+$('#prof-save').onclick=async()=>{const name=await askText('Name for these settings');if(!name)return;S.profiles=S.profiles||{};const snap={};PKEYS.forEach(k=>snap[k]=S[k]);snap.targets={...(S.targets||{})};S.profiles[name]=snap;saveS();profUI();$('#prof-sel').value=name};
+$('#prof-sel').onchange=e=>{const p=(S.profiles||{})[e.target.value];if(!p)return;PKEYS.forEach(k=>S[k]=p[k]);S.targets={...(p.targets||{})};retarget();saveS();syncUI();render()};
+$('#prof-del').onclick=()=>{const n=$('#prof-sel').value;if(!n||!S.profiles||!S.profiles[n])return;if(!confirm('Delete saved settings "'+n+'"?'))return;delete S.profiles[n];saveS();profUI()};
+profUI();
 syncUI();render();
 
 /* ===== PDF page editor ===== */
-const PE={srcs:[],pages:[],th:{},todo:[],checked:new Set(),sess:0,mod:false,cur:0,token:0,nid:0,stampImg:null};
+const PE={srcs:[],pages:[],th:{},todo:[],checked:new Set(),sess:0,mod:false,cur:0,token:0,nid:0,stampImg:null,items:[],iid:0,place:null,formOn:false,form:{},dim:null};
 const pageOf=id=>PE.pages.find(p=>p.id==id);
 const pIdx=id=>PE.pages.findIndex(p=>p.id==id);
 const srcName=s=>PE.srcs[s]?PE.srcs[s].file.name:'';
@@ -3564,10 +3786,10 @@ function peOpen(dlg){try{dlg.showModal()}catch(e){dlg.setAttribute('open','')}}
 const newPage=(s,n)=>({id:++PE.nid,s,n,del:false,rot:0,crop:null});
 async function openPed(it){
   const dlg=$('#ped');
-  Object.assign(PE,{it,mod:false,th:{},todo:[],pump:false,checked:new Set(),cur:0,token:0,sess:PE.sess+1,pages:[],srcs:[],nid:0,stampImg:null});
+  Object.assign(PE,{it,mod:false,th:{},todo:[],pump:false,checked:new Set(),cur:0,token:0,sess:PE.sess+1,pages:[],srcs:[],nid:0,stampImg:null,items:[],iid:0,place:null,formOn:false,form:{},dim:null});
   $('#ped-title').textContent=it.file.name;$('#ped-grid').innerHTML='';$('#pv-box').innerHTML='';$('#pv-info').textContent='';
   $('#ped-msg').textContent='Loading pages\u2026';$('#ped-save').disabled=true;$('#ped-count').textContent='';
-  ['sn-on','sw-on','sm-on'].forEach(i=>$('#'+i).checked=false);$('#si-file').value='';$('#si-name').textContent='';
+  ['sn-on','sw-on','sm-on'].forEach(i=>$('#'+i).checked=false);$('#si-file').value='';$('#si-name').textContent='';$('#it-list').innerHTML='';$('#fm-list').innerHTML='';$('#it-hint').textContent='';
   peOpen(dlg);try{await tick()}catch(e){}
   try{const d=await pdfDoc(it.file);PE.srcs=[{file:it.file,d}]}
   catch(e){$('#ped-msg').textContent='Could not read this PDF'+(e&&e.name=='PasswordException'?' because it is password protected.':'.');return}
@@ -3614,12 +3836,12 @@ async function showPreview(){
   $('#pv-info').textContent=`Page ${i+1} of ${PE.pages.length}`+(pg.s?` (from ${srcName(pg.s)}, page ${pg.n})`:pg.n!=i+1?` (original page ${pg.n})`:'')+(pg.del?' \u00b7 marked for deletion':'');
   $('#pv-box').classList.toggle('del',pg.del);loadCropInputs(pg);
   document.querySelectorAll('#ped-grid .pt').forEach(e=>e.classList.toggle('cur',+e.dataset.id==PE.cur));
-  try{const{c}=await renderPage(await PE.srcs[pg.s].d.getPage(pg.n),900,2,pg.rot);if(tok!=PE.token)return;
+  try{const{c,pw,ph}=await renderPage(await PE.srcs[pg.s].d.getPage(pg.n),900,2,pg.rot);if(tok!=PE.token)return;PE.dim={pw,ph};
     c.className='pvc';c.setAttribute('role','img');c.setAttribute('aria-label','Preview of page '+(i+1));
     const box=$('#pv-box'),k=Math.min(Math.max(60,box.clientWidth-16)/c.width,Math.max(60,box.clientHeight-16)/c.height,1);
     c.style.width=Math.round(c.width*k)+'px';c.style.height=Math.round(c.height*k)+'px';
     const w=document.createElement('div');w.className='pvw';w.appendChild(c);const ov=document.createElement('div');ov.id='crop-ov';ov.className='crop-ov';ov.hidden=true;w.appendChild(ov);
-    box.innerHTML='';box.appendChild(w);updateOverlay()}catch(e){}}
+    const io=document.createElement('div');io.id='items-ov';io.className='items-ov';w.appendChild(io);wirePlace(w);box.innerHTML='';box.appendChild(w);updateOverlay();renderItems()}catch(e){}}
 function changed(focusSel){PE.mod=true;drawGrid();updateInfo();showPreview();if(focusSel){const b=document.querySelector(focusSel);b&&!b.disabled&&b.focus()}}
 function move(id,d){const i=pIdx(id),j=i+d;if(j<0||j>=PE.pages.length)return;[PE.pages[i],PE.pages[j]]=[PE.pages[j],PE.pages[i]];changed(`[data-id="${id}"] [data-a="${d<0?'left':'right'}"]`)}
 $('#ped-grid').onclick=e=>{
@@ -3628,7 +3850,7 @@ $('#ped-grid').onclick=e=>{
   if(b){const a=b.dataset.a;
     if(a=='left')move(id,-1);else if(a=='right')move(id,1);
     else if(a=='rot'){pg.rot=(pg.rot+90)%360;PE.cur=id;changed(`[data-id="${id}"] [data-a="rot"]`)}
-    else if(a=='dup'){const c={...pg,id:++PE.nid,crop:pg.crop?{...pg.crop}:null};PE.pages.splice(pIdx(id)+1,0,c);PE.cur=c.id;changed(`[data-id="${c.id}"] [data-a="dup"]`)}
+    else if(a=='dup'){const c={...pg,id:++PE.nid,crop:pg.crop?{...pg.crop}:null};PE.pages.splice(pIdx(id)+1,0,c);PE.items.filter(i=>i.pid==id).forEach(i=>PE.items.push({...i,id:++PE.iid,pid:c.id}));PE.cur=c.id;changed(`[data-id="${c.id}"] [data-a="dup"]`)}
     else if(a=='del'){pg.del=!pg.del;PE.cur=id;changed(`[data-id="${id}"] [data-a="del"]`)}
     return}
   PE.cur=id;showPreview()};
@@ -3694,10 +3916,11 @@ async function buildEdited(){
   await lib('pdflib');const{PDFDocument,degrees,rgb}=PDFLib,kept=PE.pages.filter(p=>!p.del);
   const out=await PDFDocument.create(),docs={};
   const getDoc=async s=>docs[s]||(docs[s]=await PDFDocument.load(await PE.srcs[s].file.arrayBuffer(),{ignoreEncryption:true}));
-  const added=[];
+  const added=[],metas=[];if(PE.formOn&&Object.keys(PE.form).length)fillForm(await getDoc(0));
   for(const p of kept){
     const src=await getDoc(p.s),[pg]=await out.copyPages(src,[p.n-1]);
     if(p.rot)pg.setRotation(degrees((pg.getRotation().angle+p.rot)%360));
+    {const bx=pg.getCropBox(),R0=normRot(pg.getRotation().angle),W0=R0%180?bx.height:bx.width,H0=R0%180?bx.width:bx.height,c0=p.crop||{t:0,b:0,l:0,r:0};metas.push({p,Wd0:W0,Hd0:H0,cl:c0.l/100*W0,ct:c0.t/100*H0})}
     if(p.crop){
       const box=pg.getCropBox(),Rt=normRot(pg.getRotation().angle),w=box.width,h=box.height,Wd=Rt%180?h:w,Hd=Rt%180?w:h,M=pageMap(box,Rt);
       const a=M(p.crop.l/100*Wd,p.crop.b/100*Hd),b2=M(Wd-p.crop.r/100*Wd,Hd-p.crop.t/100*Hd);
@@ -3705,10 +3928,10 @@ async function buildEdited(){
       if(cw>10&&ch2>10){pg.setMediaBox(x,y,cw,ch2);pg.setCropBox(x,y,cw,ch2)}}
     out.addPage(pg);added.push(pg);try{await tick()}catch(e){throw e}}
   const num=$('#sn-on').checked,wm=$('#sw-on').checked&&$('#sw-text').value.trim(),img=PE.stampImg;
-  if(num||wm||img){
-    const keys=new Set();if(wm)scanKeys($('#sw-text').value,keys);
+  if(num||wm||img||PE.items.length){
+    const keys=new Set();if(wm)scanKeys($('#sw-text').value,keys);PE.items.forEach(i=>{if(i.kind=='text')scanKeys(i.text,keys)});
     const F=await fontSet(out,keys),total=added.length;
-    const stampImg=img?await out.embedPng(img.bytes):null;
+    const stampImg=img?await out.embedPng(img.bytes):null,itemImgs=new Map();for(const it of PE.items)if(it.kind=='img')itemImgs.set(it.id,await out.embedPng(it.img.bytes));
     const fmt=$('#sn-fmt').value,pos=$('#sn-pos').value,op=+$('#sw-op').value/100,ipos=$('#si-pos').value,isz=+$('#si-size').value/100;
     added.forEach((pg,i)=>{
       const Rt=normRot(pg.getRotation().angle),box=pg.getCropBox(),w=box.width,h=box.height,Wd=Rt%180?h:w,Hd=Rt%180?w:h,M=pageMap(box,Rt);
@@ -3720,7 +3943,8 @@ async function buildEdited(){
         pg.drawImage(stampImg,{x:pp[0],y:pp[1],width:wd,height:ht,rotate:degrees(Rt)})}
       if(num){const text=fmt=='n'?String(i+1):fmt=='page'?`Page ${i+1}`:fmt=='of'?`${i+1} / ${total}`:`Page ${i+1} of ${total}`,sz=10,wt=runsW(F,{},text,sz);
         const X=/left/.test(pos)?36:/right/.test(pos)?Wd-36-wt:(Wd-wt)/2,Y=/top/.test(pos)?Hd-24-sz:24,pp=M(X,Y);
-        drawRuns(pg,F,{},text,pp[0],pp[1],sz,{ang:Rt,color:rgb(.2,.2,.2)})}})}
+        drawRuns(pg,F,{},text,pp[0],pp[1],sz,{ang:Rt,color:rgb(.2,.2,.2)})}
+      drawItems(pg,metas[i],F,itemImgs,Rt,Hd,M)})}
   const s0=await getDoc(0);
   if($('#sm-on').checked){out.setTitle('');out.setAuthor('');out.setSubject('');out.setKeywords([]);out.setCreator('');out.setProducer('');out.setCreationDate(new Date(0));out.setModificationDate(new Date(0))}
   else{try{out.setTitle(s0.getTitle()||'');out.setAuthor(s0.getAuthor()||'');out.setSubject(s0.getSubject()||'')}catch(e){}}
@@ -3731,9 +3955,438 @@ $('#ped-save').onclick=async()=>{
   try{
     const it=PE.it,total=PE.pages.length,blob=await buildEdited(),name=base(it.file.name)+'-edited.pdf';
     it.res=[[blob,name]];const u=mkUrl(blob);
-    status(it,`<a href="${u}" download="${esc(name)}">Download ${esc(name)}</a> (${size(blob.size)}), ${kept.length} of ${total} pages`);
+    status(it,`<a href="${u}" download="${esc(name)}">Download ${esc(name)}</a> (${size(blob.size)}), ${kept.length} of ${total} pages`,'ok');
     $('#dlall').hidden=false;PE.mod=false;try{$('#ped').close()}catch(e){$('#ped').removeAttribute('open')}pedCleanup();dl(u,name)}
   catch(e){$('#ped-msg').textContent=(e&&e.message)||'Could not save this PDF.';$('#ped-save').disabled=false}};
+
+/* placed text, signatures and images */
+function drawItems(pg,mt,F,imgs,Rt,Hd,M){
+  for(const it of PE.items){if(!mt||it.pid!==mt.p.id)continue;
+    const X=it.fx*mt.Wd0-mt.cl,Ytop=Hd-(it.fy*mt.Hd0-mt.ct);
+    if(it.kind=='text'){const pp=M(X,Ytop-it.size*.82);drawRuns(pg,F,{},it.text,pp[0],pp[1],it.size,{ang:Rt,color:rgbHex(it.color.replace('#',''))})}
+    else{const im=imgs.get(it.id);if(!im)continue;const w=it.w*mt.Wd0,h=w*it.img.h/it.img.w,pp=M(X,Ytop-h);pg.drawImage(im,{x:pp[0],y:pp[1],width:w,height:h,rotate:PDFLib.degrees(Rt)})}}}
+function fillForm(doc){
+  const form=doc.getForm();
+  for(const[name,val]of Object.entries(PE.form)){try{const f=form.getField(name);
+    if(typeof f.setText=='function')f.setText(String(val));else if(typeof f.check=='function'){val?f.check():f.uncheck()}else if(typeof f.select=='function'&&val!=='')f.select(String(val))}catch(e){}}
+  try{form.updateFieldAppearances()}catch(e){}try{form.flatten()}catch(e){}}
+function renderItems(){
+  const ov=document.getElementById('items-ov');if(!ov||!PE.dim)return;const k=(ov.clientWidth||ov.getBoundingClientRect().width||PE.dim.pw)/PE.dim.pw;
+  ov.innerHTML=PE.items.filter(i=>i.pid==PE.cur).map(i=>i.kind=='text'?`<span class="it" data-it="${i.id}" style="left:${i.fx*100}%;top:${i.fy*100}%;font-size:${(i.size*k).toFixed(1)}px;color:${esc(i.color)}">${esc(i.text)}</span>`:`<img class="it" data-it="${i.id}" src="${i.img.url}" style="left:${i.fx*100}%;top:${i.fy*100}%;width:${i.w*100}%" alt="Placed image" draggable="false">`).join('');
+  $('#it-list').innerHTML=PE.items.map(i=>`<span class="chip"><button data-go="${i.id}" aria-label="Go to page of item">${i.kind=='text'?esc(i.text.slice(0,18)):'Image'} \u00b7 p${pIdx(i.pid)+1}</button><button data-rm="${i.id}" aria-label="Remove this item">\u2715</button></span>`).join('')}
+function wirePlace(w){
+  w.classList.toggle('placing',!!PE.place);
+  w.addEventListener('click',e=>{
+    if(!PE.place||e.target.classList.contains('it'))return;const r=w.getBoundingClientRect();
+    const fx=Math.max(0,Math.min(.98,(e.clientX-r.left)/r.width)),fy=Math.max(0,Math.min(.98,(e.clientY-r.top)/r.height)),pl=PE.place;
+    PE.items.push({id:++PE.iid,pid:PE.cur,kind:pl.kind,fx,fy,text:pl.text,size:pl.size,color:pl.color,img:pl.img,w:pl.w});
+    PE.place=null;w.classList.remove('placing');$('#it-hint').textContent='Placed. Drag it to move it.';PE.mod=true;updateInfo();renderItems()});
+  w.addEventListener('pointerdown',e=>{
+    const t=e.target.closest('.it');if(!t)return;e.preventDefault();const id=+t.dataset.it,it=PE.items.find(x=>x.id==id);if(!it)return;
+    try{t.setPointerCapture(e.pointerId)}catch(_){}
+    const mv=ev=>{const r=w.getBoundingClientRect();it.fx=Math.max(0,Math.min(.98,(ev.clientX-r.left)/r.width));it.fy=Math.max(0,Math.min(.98,(ev.clientY-r.top)/r.height));t.style.left=it.fx*100+'%';t.style.top=it.fy*100+'%'};
+    const up=()=>{t.removeEventListener('pointermove',mv);t.removeEventListener('pointerup',up);PE.mod=true;updateInfo()};
+    t.addEventListener('pointermove',mv);t.addEventListener('pointerup',up)})}
+function startPlace(pl,hint){PE.place=pl;$('#it-hint').textContent=hint;const w=document.querySelector('.pvw');if(w)w.classList.add('placing')}
+$('#it-place').onclick=()=>{const t=$('#it-text').value.trim();if(!t){$('#it-hint').textContent='Type the text first.';return}startPlace({kind:'text',text:t,size:+$('#it-size').value||14,color:$('#it-color').value||'#000000'},'Click on the page preview to place the text.')};
+$('#it-list').onclick=e=>{const g=e.target.closest('[data-go]'),r=e.target.closest('[data-rm]');
+  if(g){const it=PE.items.find(x=>x.id==g.dataset.go);if(it){PE.cur=it.pid;showPreview()}}
+  else if(r){PE.items=PE.items.filter(x=>x.id!=r.dataset.rm);PE.mod=true;updateInfo();renderItems()}};
+async function pngItem(canvas){const b=await cblob(canvas,'image/png');return{bytes:new Uint8Array(await b.arrayBuffer()),w:canvas.width,h:canvas.height,url:URL.createObjectURL(b)}}
+$('#it-img').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;
+  try{const c=await drawImg(f,1200,false);startPlace({kind:'img',img:await pngItem(c),w:(+$('#it-w').value||25)/100},'Click on the page preview to place the image.')}catch(err){$('#it-hint').textContent='Could not read that image.'}};
+/* signature pad */
+const sigC=$('#sig'),sigG=sigC.getContext('2d');let sigDown=false,sigLast=null;
+sigG.lineWidth=3;sigG.lineCap='round';sigG.lineJoin='round';sigG.strokeStyle='#111';
+const sigPt=e=>{const r=sigC.getBoundingClientRect();return[(e.clientX-r.left)*sigC.width/(r.width||sigC.width),(e.clientY-r.top)*sigC.height/(r.height||sigC.height)]};
+sigC.addEventListener('pointerdown',e=>{sigDown=true;try{sigC.setPointerCapture(e.pointerId)}catch(_){}sigLast=sigPt(e);sigG.beginPath();sigG.arc(sigLast[0],sigLast[1],1.2,0,7);sigG.fillStyle='#111';sigG.fill()});
+sigC.addEventListener('pointermove',e=>{if(!sigDown)return;const p=sigPt(e);sigG.beginPath();sigG.moveTo(sigLast[0],sigLast[1]);sigG.lineTo(p[0],p[1]);sigG.stroke();sigLast=p});
+['pointerup','pointercancel'].forEach(t=>sigC.addEventListener(t,()=>{sigDown=false}));
+$('#sig-clear').onclick=()=>sigG.clearRect(0,0,sigC.width,sigC.height);
+$('#sig-place').onclick=async()=>{
+  const d=sigG.getImageData(0,0,sigC.width,sigC.height).data;let x0=1e9,y0=1e9,x1=-1,y1=-1;
+  for(let y=0;y<sigC.height;y++)for(let x=0;x<sigC.width;x++)if(d[(y*sigC.width+x)*4+3]>10){if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y}
+  if(x1<0){$('#it-hint').textContent='Draw your signature in the box first.';return}
+  const pad=4,c=document.createElement('canvas');c.width=x1-x0+1+2*pad;c.height=y1-y0+1+2*pad;c.getContext('2d').drawImage(sigC,x0-pad,y0-pad,c.width,c.height,0,0,c.width,c.height);
+  startPlace({kind:'img',img:await pngItem(c),w:(+$('#it-w').value||25)/100},'Click on the page preview to place your signature.')};
+/* form fields */
+$('#fm-detect').onclick=async()=>{
+  const list=$('#fm-list');list.textContent='Looking\u2026';
+  try{await lib('pdflib');const doc=await PDFLib.PDFDocument.load(await PE.srcs[0].file.arrayBuffer(),{ignoreEncryption:true}),fields=doc.getForm().getFields();
+    PE.form={};PE.formOn=true;list.innerHTML='';let n=0;
+    for(const f of fields){
+      const name=f.getName(),row=document.createElement('label');row.className='fm-row';row.style.cssText='display:flex;gap:8px;align-items:center;flex-wrap:wrap';let inp=null;
+      if(typeof f.setText=='function'){inp=document.createElement('input');inp.type='text';inp.value=f.getText()||'';inp.oninput=()=>{PE.form[name]=inp.value;PE.mod=true;updateInfo()}}
+      else if(typeof f.check=='function'){inp=document.createElement('input');inp.type='checkbox';inp.checked=f.isChecked();inp.onchange=()=>{PE.form[name]=inp.checked;PE.mod=true;updateInfo()}}
+      else if(typeof f.select=='function'&&typeof f.getOptions=='function'){inp=document.createElement('select');const o0=document.createElement('option');o0.value='';o0.textContent='(none)';inp.appendChild(o0);f.getOptions().forEach(o=>{const op=document.createElement('option');op.value=o;op.textContent=o;inp.appendChild(op)});
+        const sel=typeof f.getSelected=='function'?f.getSelected():'';inp.value=Array.isArray(sel)?(sel[0]||''):(sel||'');inp.onchange=()=>{PE.form[name]=inp.value;PE.mod=true;updateInfo()}}
+      if(!inp)continue;n++;row.append(document.createTextNode(name+': '),inp);list.appendChild(row)}
+    if(!n){list.textContent='No fillable form fields found in this PDF.';PE.formOn=false}}
+  catch(e){list.textContent='Could not read form fields from this PDF.'}};
+
+/* ===== audio editor ===== */
+const AE={it:null,srcs:[],ready:false,noise:null,addMode:'end',ch:2,sr:44100,dur:0,segs:[],undo:[],redo:[],sel:null,cur:0,marks:[],v0:0,v1:1,play:null,raf:0,drag:null,sess:0,saved:true,ac:null,wfKey:'',wf:null,busy:false};
+const AEB=256;
+const aeTot=l=>l.reduce((a,g)=>a+(g.b-g.a),0);
+const aeTotal=()=>aeTot(AE.segs);
+const aeFmt=(t,d=1)=>{if(!isFinite(t)||t<0)t=0;const m=Math.floor(t/60),s=t-m*60;return m+':'+(s<10?'0':'')+s.toFixed(d)};
+const aeParse=s=>{s=String(s).trim().replace(',','.');if(s.includes(':')){const p=s.split(':');return(parseFloat(p[0])||0)*60+(parseFloat(p[1])||0)}return parseFloat(s)||0};
+const aeClamp=(t,a,b)=>Math.max(a,Math.min(b,t));
+function aeRange(segs,s,e){const out=[];let off=0;for(const g of segs){const len=g.b-g.a,gs=off,ge=off+len;off=ge;const a=Math.max(s,gs),b=Math.min(e,ge);if(b>a)out.push({s:g.s||0,a:g.a+(a-gs),b:g.a+(b-gs)})}return out}
+function aeMerge(l){const o=[];for(const g of l){const p=o[o.length-1];if(p&&p.s==(g.s||0)&&Math.abs(p.b-g.a)<1e-9)p.b=g.b;else o.push({s:g.s||0,a:g.a,b:g.b})}return o}
+function aeOpenDlg(d){try{d.showModal()}catch(e){d.setAttribute('open','')}}
+async function aePeaks(data,N){
+  const nb=Math.ceil(N/AEB),pk=new Float32Array(nb*2),ch=data.length;
+  for(let b=0;b<nb;b++){let mn=1,mx=-1;const s=b*AEB,e=Math.min(N,s+AEB);
+    for(let c=0;c<ch;c++){const d=data[c];for(let i=s;i<e;i++){const v=d[i];if(v<mn)mn=v;if(v>mx)mx=v}}
+    pk[2*b]=mn;pk[2*b+1]=mx;if(b%4000==3999)await tick()}
+  return pk}
+function aePeakRange(t0,t1){
+  let mn=1,mx=-1;const sr=AE.sr;
+  for(const g of aeRange(AE.segs,t0,t1)){
+    const S0=AE.srcs[g.s||0],sa=Math.floor(g.a*sr),sb=Math.max(sa+1,Math.ceil(g.b*sr));
+    if(sb-sa<AEB*2){for(let c=0;c<S0.ch;c++){const d=S0.data[c];for(let i=sa;i<sb&&i<S0.N;i++){const v=d[i];if(v<mn)mn=v;if(v>mx)mx=v}}}
+    else{const nb=S0.pk.length/2,ba=Math.floor(sa/AEB),bb=Math.min(nb-1,Math.floor((sb-1)/AEB));for(let b=ba;b<=bb;b++){if(S0.pk[2*b]<mn)mn=S0.pk[2*b];if(S0.pk[2*b+1]>mx)mx=S0.pk[2*b+1]}}}
+  return mn>mx?[0,0]:[mn,mx]}
+/* drawing */
+const aeCss=(n,fb)=>{try{return getComputedStyle(document.documentElement).getPropertyValue(n).trim()||fb}catch(e){return fb}};
+function aeDraw(){
+  const cv=$('#ae-cv');if(!AE.ready)return;
+  const dpr=window.devicePixelRatio||1,W=Math.max(300,cv.clientWidth||860),H=cv.clientHeight||190;
+  if(cv.width!=Math.round(W*dpr)||cv.height!=Math.round(H*dpr)){cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr)}
+  const T=aeTotal(),acc=aeCss('--acc','#0a8577'),acc2=aeCss('--acc2','#2563eb'),bg=aeCss('--card2','#f6f8fc'),mute=aeCss('--mute','#5b6678'),line=aeCss('--line','#dde3ee'),ink=aeCss('--ink','#141a26'),warn=aeCss('--warn','#8f5b00');
+  const key=[AE.segsVer,AE.v0,AE.v1,W,H,acc,acc2,bg,mute].join('|');
+  if(key!=AE.wfKey||!AE.wf){
+    const wf=AE.wf||(AE.wf=document.createElement('canvas'));wf.width=Math.round(W*dpr);wf.height=Math.round(H*dpr);
+    const g=wf.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);g.fillStyle=bg;g.fillRect(0,0,W,H);
+    const top=26,mid=top+(H-top)/2,amp=(H-top-8)/2,span=AE.v1-AE.v0,pps=W/span;
+    const steps=[.02,.05,.1,.2,.5,1,2,5,10,15,30,60,120,300,600,1800],step=steps.find(s=>s*pps>=78)||1800;
+    g.font='11px system-ui,sans-serif';g.textBaseline='top';g.strokeStyle=line;g.fillStyle=mute;g.lineWidth=1;
+    for(let t=Math.ceil(AE.v0/step)*step;t<=AE.v1+1e-9;t+=step){const x=Math.round((t-AE.v0)*pps)+.5;g.beginPath();g.moveTo(x,18);g.lineTo(x,H);g.stroke();g.fillText(aeFmt(t,step<1?(step<.1?2:1):0),x+4,4)}
+    g.strokeStyle=mute;g.globalAlpha=.4;g.beginPath();g.moveTo(0,mid+.5);g.lineTo(W,mid+.5);g.stroke();g.globalAlpha=1;
+    const gr=g.createLinearGradient(0,top,0,H);gr.addColorStop(0,acc);gr.addColorStop(1,acc2);g.fillStyle=gr;
+    for(let x=0;x<W;x++){const ta=AE.v0+x/pps,tb=AE.v0+(x+1)/pps;if(ta>=T)break;const[mn,mx]=aePeakRange(ta,Math.min(tb,T));
+      const y1=mid-mx*amp,y2=mid-mn*amp;g.fillRect(x,y1,1,Math.max(1.5,y2-y1))}
+    if(AE.v1>T){const x=(T-AE.v0)*pps;g.fillStyle='rgba(120,130,150,.18)';g.fillRect(x,top-8,W-x,H)}
+    AE.wfKey=key}
+  const g=cv.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,W,H);g.drawImage(AE.wf,0,0,W,H);
+  const pps=W/(AE.v1-AE.v0),X=t=>(t-AE.v0)*pps;
+  if(AE.sel){const x1=X(AE.sel.s),x2=X(AE.sel.e);g.fillStyle=acc;g.globalAlpha=.2;g.fillRect(x1,24,x2-x1,H-24);g.globalAlpha=1;g.fillStyle=acc;g.fillRect(x1-1,24,2,H-24);g.fillRect(x2-1,24,2,H-24);
+    for(const x of[x1,x2]){g.beginPath();g.arc(x,H/2+10,6,0,7);g.fillStyle=acc;g.fill();g.strokeStyle='#fff';g.lineWidth=2;g.stroke()}}
+  g.setLineDash([5,4]);g.lineWidth=1.5;AE.marks.forEach((m,i)=>{const x=X(m);if(x<-4||x>W+4)return;g.strokeStyle=warn;g.beginPath();g.moveTo(x,20);g.lineTo(x,H);g.stroke()});g.setLineDash([]);
+  g.font='bold 11px system-ui,sans-serif';g.textBaseline='middle';
+  AE.marks.forEach((m,i)=>{const x=X(m);if(x<-4||x>W+4)return;const t=String(i+1),w=g.measureText(t).width+10;g.fillStyle=warn;g.fillRect(x-w/2,H-18,w,14);g.fillStyle='#fff';g.fillText(t,x-w/2+5,H-11)});
+  const cx=X(AE.cur);if(cx>=-2&&cx<=W+2){g.strokeStyle=ink;g.lineWidth=1.5;g.beginPath();g.moveTo(cx,18);g.lineTo(cx,H);g.stroke();g.fillStyle=ink;g.beginPath();g.moveTo(cx-5,18);g.lineTo(cx+5,18);g.lineTo(cx,25);g.fill()}}
+/* state refresh */
+function aeSync(){
+  const T=aeTotal(),s=AE.sel;
+  $('#ae-orig').textContent=`Original ${aeFmt(AE.dur)} \u00b7 ${(AE.sr/1000).toFixed(AE.sr%1000?1:0)} kHz \u00b7 ${AE.ch==1?'mono':AE.ch==2?'stereo':AE.ch+' channels'}`+(AE.srcs.length>1?` \u00b7 ${AE.srcs.length} files`:'');
+  $('#ae-noise').hidden=!AE.noise;
+  $('#ae-edit').textContent=`Edited ${aeFmt(T)}`+(Math.abs(T-AE.dur)>.05?` (${T<AE.dur?'\u2212':'+'}${aeFmt(Math.abs(AE.dur-T))})`:'');
+  $('#ae-sel').textContent=s?`Selection ${aeFmt(s.s)} \u2013 ${aeFmt(s.e)} (${(s.e-s.s).toFixed(1)} s)`:'No selection';
+  $('#ae-s').value=s?aeFmt(s.s,2):'';$('#ae-e').value=s?aeFmt(s.e,2):'';
+  ['ae-trim','ae-del','ae-savesel','ae-zsel'].forEach(i=>$('#'+i).disabled=!s||AE.busy);$('#ae-save').disabled=AE.busy||!AE.ready;
+  $('#ae-undo').disabled=!AE.undo.length;$('#ae-redo').disabled=!AE.redo.length;
+  $('#ae-nosplit').disabled=!AE.marks.length;$('#ae-saveparts').disabled=!AE.marks.length||AE.busy;$('#ae-saveparts').textContent=AE.marks.length?`Save ${AE.marks.length+1} parts`:'Save parts';
+  $('#ae-time').textContent=aeFmt(AE.cur);
+  $('#ae-marks').innerHTML=AE.marks.map((m,i)=>`<span class="chip"><button data-goto="${i}" aria-label="Go to split ${i+1}">Split ${i+1} \u00b7 ${aeFmt(m)}</button><button data-delm="${i}" aria-label="Remove split ${i+1}">\u2715</button></span>`).join('');
+  const span=AE.v1-AE.v0,pan=$('#ae-pan');pan.disabled=span>=T-1e-6;pan.value=T-span>1e-6?Math.round(AE.v0/(T-span)*1000):0;
+  AE.segsVer=(AE.segsVer||0);aeDraw()}
+function aeFit(){AE.v0=0;AE.v1=Math.max(aeTotal(),.1)}
+function aeView(c,span){const T=Math.max(aeTotal(),.1);span=aeClamp(span,Math.min(.02,T),T);AE.v0=aeClamp(c-span/2,0,T-span);AE.v1=AE.v0+span}
+function aeSnap(){AE.undo.push({segs:AE.segs.map(g=>({s:g.s||0,a:g.a,b:g.b})),marks:[...AE.marks]});if(AE.undo.length>300)AE.undo.shift();AE.redo=[];AE.saved=false}
+function aeBump(){AE.segsVer=(AE.segsVer||0)+1}
+function aeKeep(){const s=AE.sel;if(!s)return;aeStop();aeSnap();AE.segs=aeMerge(aeRange(AE.segs,s.s,s.e));AE.marks=AE.marks.filter(m=>m>s.s+.02&&m<s.e-.02).map(m=>m-s.s);AE.sel=null;AE.cur=0;aeBump();aeFit();aeSync()}
+function aeDelete(){
+  const s=AE.sel;if(!s)return;const T=aeTotal();
+  if(T-(s.e-s.s)<.05){$('#ae-msg').textContent='You cannot delete everything. Use Undo or keep some audio.';return}
+  aeStop();aeSnap();AE.segs=aeMerge([...aeRange(AE.segs,0,s.s),...aeRange(AE.segs,s.e,T)]);const d=s.e-s.s;
+  AE.marks=AE.marks.filter(m=>m<=s.s||m>=s.e).map(m=>m>=s.e?m-d:m);AE.cur=Math.min(s.s,aeTotal());AE.sel=null;aeBump();AE.v1=Math.min(AE.v1,aeTotal());if(AE.v1-AE.v0<.05)aeFit();aeSync()}
+function aeUndo(){const st=AE.undo.pop();if(!st)return;aeStop();AE.redo.push({segs:AE.segs,marks:AE.marks});AE.segs=st.segs;AE.marks=st.marks;AE.sel=null;AE.cur=Math.min(AE.cur,aeTotal());aeBump();aeFit();aeSync()}
+function aeRedo(){const st=AE.redo.pop();if(!st)return;aeStop();AE.undo.push({segs:AE.segs,marks:AE.marks});AE.segs=st.segs;AE.marks=st.marks;AE.sel=null;AE.cur=Math.min(AE.cur,aeTotal());aeBump();aeFit();aeSync()}
+const aeAddMarks=list=>{const T=aeTotal(),cur=AE.marks.slice();for(const m of list){if(m>.05&&m<T-.05&&!cur.some(x=>Math.abs(x-m)<.03))cur.push(m)}cur.sort((a,b)=>a-b);if(cur.length!=AE.marks.length){aeSnap();AE.marks=cur}return cur.length};
+/* playback */
+function aePlayPause(){if(AE.play){aeStop();return}aePlay()}
+function aePlay(){
+  aeStop();const T=aeTotal();if(!T)return;const s=AE.sel;
+  let from=s?((AE.cur>s.s+.01&&AE.cur<s.e-.03)?AE.cur:s.s):AE.cur,to=s?s.e:T;if(!s&&from>=T-.03)from=0;
+  const ac=getAC();if(!ac){$('#ae-msg').textContent='This browser cannot play audio.';return}
+  AE.ac=ac;if(ac.state!='running'&&ac.resume)ac.resume();
+  const sp=+$('#ae-speed').value||1,gn=ac.createGain();gn.gain.value=Math.pow(10,(+$('#ae-gain').value||0)/20);gn.connect(ac.destination);
+  const nodes=[];let when=ac.currentTime+.06;
+  for(const g of aeRange(AE.segs,from,to)){const n=ac.createBufferSource();n.buffer=AE.srcs[g.s||0].buf;n.playbackRate.value=sp;n.connect(gn);n.start(when,g.a,g.b-g.a);nodes.push(n);when+=(g.b-g.a)/sp}
+  AE.play={nodes,t0:ac.currentTime+.06,from,to,sp};
+  const last=nodes[nodes.length-1];if(last)last.onended=()=>{if(AE.play&&AE.play.nodes===nodes){const p=AE.play;aeStop();AE.cur=p.to>=aeTotal()-.03?aeTotal():p.to;aeSync()}};
+  $('#ae-play').textContent='\u275a\u275a Pause';aeTick()}
+function aeTick(){
+  const p=AE.play;if(!p)return;const t=Math.min(p.to,p.from+Math.max(0,AE.ac.currentTime-p.t0)*p.sp);AE.cur=t;
+  if(t>AE.v1||t<AE.v0){aeView(t+(AE.v1-AE.v0)*.4,AE.v1-AE.v0)}
+  $('#ae-time').textContent=aeFmt(t);aeDraw();AE.raf=requestAnimationFrame(aeTick)}
+function aeStop(){
+  if(AE.play){AE.play.nodes.forEach(n=>{try{n.onended=null;n.stop()}catch(e){}});AE.play=null}
+  cancelAnimationFrame(AE.raf);$('#ae-play').textContent='\u25b6 Play'}
+/* export */
+function aeRaw(segs){
+  const sr=AE.sr,ch=Math.max(...segs.map(g=>AE.srcs[g.s||0].ch),1);let len=0;
+  const ps=segs.map(g=>{const S0=AE.srcs[g.s||0],a=Math.round(g.a*sr),b=Math.min(S0.N,Math.round(g.b*sr));len+=Math.max(0,b-a);return[S0,a,b]}),out=[];
+  for(let c=0;c<ch;c++){const arr=new Float32Array(len);let o=0;for(const[S0,a,b]of ps)if(b>a){arr.set(S0.data[Math.min(c,S0.ch-1)].subarray(a,b),o);o+=b-a}out.push(arr)}
+  return{chs:out,length:len,sr}}
+function aeFFT(re,im,inv){
+  const n=re.length;
+  for(let i=1,j=0;i<n;i++){let bit=n>>1;for(;j&bit;bit>>=1)j^=bit;j^=bit;if(i<j){let t=re[i];re[i]=re[j];re[j]=t;t=im[i];im[i]=im[j];im[j]=t}}
+  for(let len=2;len<=n;len<<=1){const ang=2*Math.PI/len*(inv?-1:1),wr=Math.cos(ang),wi=Math.sin(ang);
+    for(let i=0;i<n;i+=len){let cr=1,ci=0;for(let k=0;k<len/2;k++){const a=i+k,b=a+len/2,tr=re[b]*cr-im[b]*ci,ti=re[b]*ci+im[b]*cr;re[b]=re[a]-tr;im[b]=im[a]-ti;re[a]+=tr;im[a]+=ti;const nr=cr*wr-ci*wi;ci=cr*wi+ci*wr;cr=nr}}}
+  if(inv)for(let i=0;i<n;i++){re[i]/=n;im[i]/=n}}
+const AENF=2048,AEH=1024,AEWIN=(()=>{const w=new Float32Array(AENF);for(let i=0;i<AENF;i++)w[i]=Math.sqrt(.5-.5*Math.cos(2*Math.PI*i/AENF));return w})();
+function aeNoiseMag(x){
+  const mag=new Float32Array(AENF/2+1),re=new Float32Array(AENF),im=new Float32Array(AENF);let n=0;
+  for(let p=0;p+AENF<=x.length;p+=AEH){for(let i=0;i<AENF;i++){re[i]=x[p+i]*AEWIN[i];im[i]=0}aeFFT(re,im,false);for(let b=0;b<=AENF/2;b++)mag[b]+=Math.hypot(re[b],im[b]);n++}
+  if(!n)throw new Error('The noise sample is too short. Select at least 0.2 seconds of pure background noise.');
+  for(let b=0;b<mag.length;b++)mag[b]/=n;return mag}
+async function aeNR(x,nm,level){
+  const alpha=[0,1.2,1.8,2.6][level],beta=[1,.15,.08,.04][level],out=new Float32Array(x.length+AENF),re=new Float32Array(AENF),im=new Float32Array(AENF);
+  for(let p=-AEH,fr=0;p<x.length;p+=AEH,fr++){
+    for(let i=0;i<AENF;i++){const k=p+i;re[i]=(k>=0&&k<x.length?x[k]:0)*AEWIN[i];im[i]=0}
+    aeFFT(re,im,false);
+    for(let b=0;b<=AENF/2;b++){const m=Math.hypot(re[b],im[b]),g=m>1e-12?Math.max(m-nm[b]*alpha,beta*m)/m:0;re[b]*=g;im[b]*=g;if(b>0&&b<AENF/2){re[AENF-b]=re[b];im[AENF-b]=-im[b]}}
+    aeFFT(re,im,true);
+    for(let i=0;i<AENF;i++){const k=p+i;if(k>=0)out[k]+=re[i]*AEWIN[i]}
+    if(fr%30==29)await tick()}
+  return out.subarray(0,x.length)}
+function aeAutoNoise(mono,sr){
+  const w=Math.max(AENF*2,Math.round(.5*sr)),step=Math.round(w/2);let best=1e18,bs=0;
+  for(let p=0;p+w<=mono.length;p+=step){let e=0;for(let i=p;i<p+w;i+=4)e+=mono[i]*mono[i];if(e<best){best=e;bs=p}}
+  return mono.subarray(bs,Math.min(mono.length,bs+w))}
+async function aeFinish(raw,fade){
+  let{chs,length:len,sr}=raw;
+  const nrl=+$('#ae-nr').value||0;
+  if(nrl>0&&len>AENF*2){
+    const sample=AE.noise?aeRaw(AE.noise).chs[0]:aeAutoNoise(chs[0],sr),nm=aeNoiseMag(sample),o=[];
+    for(let c=0;c<chs.length;c++){$('#ae-msg').textContent=`Reducing noise (channel ${c+1} of ${chs.length})\u2026`;o.push(new Float32Array(await aeNR(chs[c],nm,nrl)))}
+    chs=o}
+  const db=+$('#ae-gain').value||0;
+  if(db){const g=Math.pow(10,db/20);chs.forEach(a=>{for(let i=0;i<a.length;i++)a[i]*=g})}
+  if($('#ae-norm').checked){let pk=0;chs.forEach(a=>{for(let i=0;i<a.length;i++){const v=Math.abs(a[i]);if(v>pk)pk=v}});if(pk>1e-6){const g=.891/pk;chs.forEach(a=>{for(let i=0;i<a.length;i++)a[i]*=g})}}
+  const sp=+$('#ae-speed').value||1;
+  if(sp!=1){const nl=Math.floor(len/sp);chs=chs.map(a=>{const o=new Float32Array(nl);for(let i=0;i<nl;i++){const x=i*sp,k=Math.floor(x),f=x-k;o[i]=a[k]*(1-f)+(a[k+1]===undefined?a[k]:a[k+1])*f}return o});len=nl}
+  chs.forEach(a=>{for(let i=0;i<a.length;i++){const v=a[i];if(v>1)a[i]=1;else if(v<-1)a[i]=-1}});
+  if(fade&&len>0){const f=Math.min(Math.round(.3*sr),Math.floor(len/3));chs.forEach(a=>{for(let i=0;i<f;i++){const k=i/f;a[i]*=k;a[len-1-i]*=k}})}
+  return{numberOfChannels:chs.length,length:len,sampleRate:sr,getChannelData:i=>chs[i]}}
+async function aeEncode(segs,name){
+  const fmt=$('#ae-fmt').value,b=await aeFinish(aeRaw(segs),$('#ae-fade').checked);if(b.length<64)throw new Error('That section is too short to save.');
+  return fmt=='mp3'?[await mp3Blob(b,{prog:p=>{$('#ae-msg').textContent=`Encoding MP3\u2026 ${Math.round(p*100)}%`}}),name+'.mp3']:[await wavBlob(b),name+'.wav']}
+async function aeSave(kind){
+  if(AE.busy||!AE.ready)return;AE.busy=true;aeStop();window.__cancel=false;const it=AE.it,b=base(it.file.name);
+  ['ae-save','ae-savesel','ae-saveparts'].forEach(i=>$('#'+i).disabled=true);$('#ae-msg').textContent='Saving\u2026';$('#ae-out').textContent='';
+  try{
+    const res=[],T=aeTotal();
+    if(kind=='all')res.push(await aeEncode(AE.segs,b+'-edited'));
+    else if(kind=='sel')res.push(await aeEncode(aeMerge(aeRange(AE.segs,AE.sel.s,AE.sel.e)),b+'-selection'));
+    else{const bd=[0,...AE.marks,T],n=bd.length-1;
+      for(let i=0;i<n;i++){if(bd[i+1]-bd[i]<.05)continue;$('#ae-msg').textContent=`Saving part ${i+1} of ${n}\u2026`;await tick();res.push(await aeEncode(aeMerge(aeRange(AE.segs,bd[i],bd[i+1])),`${b}-part${pad(i+1,n)}`))}}
+    it.res=res;const h=await links(res,b+'-audio.zip');status(it,h,'ok');$('#ae-out').innerHTML=h+'<div style="margin-top:6px"><audio controls src="'+mkUrl(res[0][0])+'"></audio></div>';$('#dlall').hidden=false;AE.saved=true;$('#ae-msg').textContent=`Saved ${res.length} file${res.length>1?'s':''}.`;
+  }catch(e){$('#ae-msg').textContent=(e&&e.message)||'Could not save.'}
+  finally{AE.busy=false;aeSync()}}
+/* silence and splits */
+async function aeSilences(){
+  const T=aeTotal();window.__cancel=false;const thr=Math.pow(10,(+$('#ae-thr').value)/20),minL=+$('#ae-min').value,step=.02,found=[];let run=null;
+  $('#ae-msg').textContent='Looking for silences\u2026';
+  try{for(let t=0,k=0;t<T;t+=step,k++){const[mn,mx]=aePeakRange(t,Math.min(T,t+step)),amp=Math.max(Math.abs(mn),Math.abs(mx));
+      if(amp<thr){if(run===null)run=t}else{if(run!==null&&t-run>=minL)found.push((run+t)/2);run=null}
+      if(k%1500==1499)await tick()}}
+  catch(e){$('#ae-msg').textContent='Stopped.';return}
+  const before=AE.marks.length,n=aeAddMarks(found);
+  $('#ae-msg').textContent=found.length?`Found ${found.length} silence${found.length>1?'s':''}, added ${n-before} split point${n-before==1?'':'s'}.`:'No silences found. Try a higher threshold or a shorter length.';aeSync()}
+/* open and close */
+async function openAed(it){
+  const dlg=$('#aed');window.__cancel=false;
+  Object.assign(AE,{it,srcs:[],ready:false,noise:null,segs:[],undo:[],redo:[],sel:null,cur:0,marks:[],saved:true,sess:AE.sess+1,wfKey:'',wf:null,segsVer:0,busy:false,play:null});
+  $('#aed-title').textContent=it.file.name;$('#ae-msg').textContent='Reading audio\u2026';$('#ae-out').textContent='';
+  ['ae-orig','ae-edit','ae-sel'].forEach(i=>$('#'+i).textContent='');$('#ae-marks').innerHTML='';
+  ['ae-save','ae-savesel','ae-saveparts'].forEach(i=>$('#'+i).disabled=true);
+  aeOpenDlg(dlg);try{await tick()}catch(e){}
+  const sess=AE.sess;let buf;
+  try{buf=await(window.__decodeAudio||decodeAudio)(it.file)}catch(e){$('#ae-msg').textContent=(e&&e.message)||'This browser cannot decode that audio.';return}
+  if(sess!=AE.sess)return;
+  const data=[...Array(buf.numberOfChannels)].map((_,i)=>buf.getChannelData(i));
+  AE.sr=buf.sampleRate;AE.ch=buf.numberOfChannels;AE.dur=buf.length/AE.sr;
+  $('#ae-msg').textContent='Drawing waveform\u2026';
+  let pk;try{pk=await aePeaks(data,buf.length)}catch(e){return}
+  if(sess!=AE.sess)return;
+  AE.srcs=[{name:it.file.name,buf,data,pk,ch:buf.numberOfChannels,N:buf.length,dur:AE.dur}];AE.ready=true;
+  AE.segs=[{s:0,a:0,b:AE.dur}];aeFit();$('#ae-save').disabled=false;$('#ae-msg').textContent='';aeSync();$('#ae-cv').focus()}
+function aeClose(){
+  if(!AE.saved&&AE.undo.length&&!confirm('Close without saving your edits?'))return;
+  const d=$('#aed');try{d.close()}catch(e){d.removeAttribute('open')}aeCleanup()}
+function aeCleanup(){aeStop();AE.sess++;AE.srcs=[];AE.ready=false;AE.wf=null;AE.undo=[];AE.redo=[];AE.ac=null}
+$('#aed-x').onclick=aeClose;
+$('#aed').addEventListener('cancel',e=>{if(!AE.saved&&AE.undo.length&&!confirm('Close without saving your edits?'))e.preventDefault()});
+$('#aed').addEventListener('close',aeCleanup);
+/* controls */
+$('#ae-play').onclick=aePlayPause;
+$('#ae-stop').onclick=()=>{aeStop();AE.cur=AE.sel?AE.sel.s:0;aeSync()};
+$('#ae-trim').onclick=aeKeep;$('#ae-del').onclick=aeDelete;$('#ae-undo').onclick=aeUndo;$('#ae-redo').onclick=aeRedo;
+$('#ae-all').onclick=()=>{const T=aeTotal();AE.sel={s:0,e:T};aeSync()};
+$('#ae-none').onclick=()=>{AE.sel=null;aeSync()};
+const aeSelInput=()=>{const T=aeTotal();let s=aeClamp(aeParse($('#ae-s').value),0,T),e=aeClamp(aeParse($('#ae-e').value),0,T);if(e<s)[s,e]=[e,s];if(e-s<.01){AE.sel=null}else AE.sel={s,e};aeSync()};
+$('#ae-s').onchange=aeSelInput;$('#ae-e').onchange=aeSelInput;
+$('#ae-split').onclick=()=>{aeAddMarks([AE.cur]);aeSync()};
+$('#ae-nosplit').onclick=()=>{aeSnap();AE.marks=[];aeSync()};
+$('#ae-eq').onclick=()=>{const T=aeTotal(),n=Math.max(2,Math.min(99,+$('#ae-n').value||2));aeAddMarks(Array.from({length:n-1},(_,k)=>T*(k+1)/n));aeSync()};
+$('#ae-ev').onclick=()=>{const T=aeTotal(),x=Math.max(1,+$('#ae-x').value||30),l=[];for(let t=x;t<T-.05;t+=x)l.push(t);aeAddMarks(l);aeSync()};
+$('#ae-sil').onclick=aeSilences;
+$('#ae-marks').onclick=e=>{const g=e.target.closest('[data-goto]'),d=e.target.closest('[data-delm]');
+  if(g){AE.cur=AE.marks[+g.dataset.goto];aeView(AE.cur,AE.v1-AE.v0);aeSync()}
+  else if(d){aeSnap();AE.marks.splice(+d.dataset.delm,1);aeSync()}};
+$('#ae-save').onclick=()=>aeSave('all');$('#ae-savesel').onclick=()=>aeSave('sel');$('#ae-saveparts').onclick=()=>aeSave('parts');
+$('#ae-zin').onclick=()=>{const c=AE.sel?(AE.sel.s+AE.sel.e)/2:AE.cur;aeView(c,(AE.v1-AE.v0)/2);aeSync()};
+$('#ae-zout').onclick=()=>{aeView((AE.v0+AE.v1)/2,(AE.v1-AE.v0)*2);aeSync()};
+$('#ae-fit').onclick=()=>{aeFit();aeSync()};
+$('#ae-zsel').onclick=()=>{if(!AE.sel)return;const p=(AE.sel.e-AE.sel.s)*.08;aeView((AE.sel.s+AE.sel.e)/2,AE.sel.e-AE.sel.s+2*p);aeSync()};
+$('#ae-pan').oninput=e=>{const T=aeTotal(),span=AE.v1-AE.v0;AE.v0=(T-span)*(+e.target.value)/1000;AE.v1=AE.v0+span;aeDraw()};
+/* waveform pointer and keyboard */
+const aeCv=$('#ae-cv'),aeX=e=>e.clientX-aeCv.getBoundingClientRect().left,aeW=()=>aeCv.clientWidth||860;
+const aeT=x=>aeClamp(AE.v0+x/aeW()*(AE.v1-AE.v0),0,aeTotal()),aeXt=t=>(t-AE.v0)/(AE.v1-AE.v0)*aeW();
+aeCv.addEventListener('pointerdown',e=>{
+  if(!AE.ready)return;try{aeCv.setPointerCapture(e.pointerId)}catch(_){}
+  const x=aeX(e),t=aeT(x),s=AE.sel;
+  if(s&&Math.abs(x-aeXt(s.s))<10)AE.drag={m:'s'};else if(s&&Math.abs(x-aeXt(s.e))<10)AE.drag={m:'e'};else AE.drag={m:'new',a:t,x0:x,moved:false};
+  aeCv.focus()});
+aeCv.addEventListener('pointermove',e=>{
+  if(!AE.ready)return;const x=aeX(e),t=aeT(x),d=AE.drag,s=AE.sel;
+  if(!d){aeCv.style.cursor=s&&(Math.abs(x-aeXt(s.s))<10||Math.abs(x-aeXt(s.e))<10)?'ew-resize':'crosshair';return}
+  if(d.m=='new'){if(Math.abs(x-d.x0)>3)d.moved=true;if(d.moved)AE.sel={s:Math.min(d.a,t),e:Math.max(d.a,t)}}
+  else if(d.m=='s'&&s)s.s=Math.min(t,s.e-.01);else if(d.m=='e'&&s)s.e=Math.max(t,s.s+.01);
+  if(AE.sel){$('#ae-sel').textContent=`Selection ${aeFmt(AE.sel.s)} \u2013 ${aeFmt(AE.sel.e)} (${(AE.sel.e-AE.sel.s).toFixed(1)} s)`}aeDraw()});
+aeCv.addEventListener('pointerup',()=>{
+  const d=AE.drag;AE.drag=null;if(!d)return;
+  if(d.m=='new'&&!d.moved){AE.cur=d.a;AE.sel=null;if(AE.play)aePlay()}
+  if(AE.sel&&AE.sel.e-AE.sel.s<.02)AE.sel=null;aeSync()});
+aeCv.addEventListener('wheel',e=>{if(!(e.ctrlKey||e.metaKey)||!AE.ready)return;e.preventDefault();const t=aeT(aeX(e));aeView(t,(AE.v1-AE.v0)*(e.deltaY>0?1.25:.8));aeSync()},{passive:false});
+aeCv.addEventListener('keydown',e=>{
+  if(!AE.ready)return;const k=e.key;
+  if(k==' '){e.preventDefault();aePlayPause()}
+  else if(k=='s'||k=='S'){aeAddMarks([AE.cur]);aeSync()}
+  else if(k=='Delete'||k=='Backspace'){e.preventDefault();aeDelete()}
+  else if(k=='ArrowLeft'||k=='ArrowRight'){e.preventDefault();AE.cur=aeClamp(AE.cur+(k=='ArrowRight'?1:-1)*(e.shiftKey?1:.1),0,aeTotal());aeSync()}
+  else if(k=='Home'){AE.cur=0;aeSync()}else if(k=='End'){AE.cur=aeTotal();aeSync()}});
+window.addEventListener('resize',()=>{if(AE.ready&&$('#aed').hasAttribute('open'))aeDraw()});
+
+/* extras: combine files, noise sample, effects labels */
+$('#ae-noisebtn').onclick=()=>{if(!AE.sel)return;AE.noise=aeMerge(aeRange(AE.segs,AE.sel.s,AE.sel.e));$('#ae-msg').textContent='Noise sample set. Choose a noise reduction level, then save.';aeSync()};
+$('#ae-gain').oninput=()=>{const v=+$('#ae-gain').value;$('#ae-gainv').textContent=(v>0?'+':'')+v+' dB'};
+$('#ae-add').onclick=()=>{AE.addMode='cursor';$('#ae-addfile').click()};
+$('#ae-addend').onclick=()=>{AE.addMode='end';$('#ae-addfile').click()};
+$('#ae-addfile').onchange=async e=>{
+  const files=[...e.target.files];e.target.value='';if(!files.length||!AE.ready)return;
+  $('#ae-msg').textContent='Reading audio\u2026';
+  try{
+    aeStop();let at=AE.addMode=='cursor'?AE.cur:aeTotal();
+    for(const f of files){
+      const buf=await decodeAudio(f);if(buf.sampleRate!=AE.sr)throw new Error('That file has a different sample rate and cannot be combined here.');
+      const data=[...Array(buf.numberOfChannels)].map((_,i)=>buf.getChannelData(i)),pk=await aePeaks(data,buf.length),dur=buf.length/AE.sr;
+      AE.srcs.push({name:f.name,buf,data,pk,ch:buf.numberOfChannels,N:buf.length,dur});const idx=AE.srcs.length-1;
+      aeSnap();const T=aeTotal();at=aeClamp(at,0,T);
+      AE.segs=aeMerge([...aeRange(AE.segs,0,at),{s:idx,a:0,b:dur},...aeRange(AE.segs,at,T)]);
+      AE.marks=AE.marks.map(m=>m>=at?m+dur:m);at+=dur;aeBump()}
+    AE.sel=null;aeFit();aeSync();$('#ae-msg').textContent=`Added ${files.length} file${files.length>1?'s':''}.`}
+  catch(err){$('#ae-msg').textContent=(err&&err.message)||'Could not add that file.'}};
+
+/* ===== compare two PDFs or images ===== */
+const CM={a:null,b:null,i:1,n:0,diffs:{},sess:0,kind:'pdf'};
+async function cmSide(side,i,W){
+  const o=CM[side];let c,w,h;
+  if(CM.kind=='pdf'){if(i>o.n)return null;const r=await renderPage(await o.d.getPage(i),W,2);c=r.c}
+  else{if(i>1)return null;c=await drawImg(o.file,W,true)}
+  return c}
+async function cmCompute(i,W){
+  const a=await cmSide('a',i,W),b=await cmSide('b',i,W),w=Math.max(a?a.width:1,b?b.width:1),h=Math.max(a?a.height:1,b?b.height:1);
+  const mk=src=>{const c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,w,h);if(src)g.drawImage(src,0,0);return c};
+  const A=mk(a),B=mk(b),D=document.createElement('canvas');D.width=w;D.height=h;
+  const da=A.getContext('2d').getImageData(0,0,w,h).data,db=B.getContext('2d').getImageData(0,0,w,h).data,gd=D.getContext('2d'),out=gd.createImageData(w,h),o=out.data;let diff=0;
+  for(let p=0;p<da.length;p+=4){const d=Math.abs(da[p]-db[p])+Math.abs(da[p+1]-db[p+1])+Math.abs(da[p+2]-db[p+2]);
+    if(d>90){o[p]=225;o[p+1]=40;o[p+2]=50;o[p+3]=255;diff++}else{const g=Math.round(255-(255-(db[p]+db[p+1]+db[p+2])/3)*.35);o[p]=o[p+1]=o[p+2]=g;o[p+3]=255}}
+  gd.putImageData(out,0,0);
+  return{A,B,D,pct:diff/(w*h)*100,only:!a?'B':!b?'A':''}}
+function cmShow(r,i){
+  for(const[id,c]of[['cm-a',r.A],['cm-b',r.B],['cm-d',r.D]]){const t=$('#'+id);t.width=c.width;t.height=c.height;t.getContext('2d').drawImage(c,0,0)}
+  $('#cm-page').textContent=`Page ${i} of ${CM.n}`+(r.only?` (only in file ${r.only})`:'');
+  const bad=Object.keys(CM.diffs).filter(k=>CM.diffs[k]>0.01);
+  $('#cm-sum').textContent=r.pct<0.01?'This page is identical':`${r.pct.toFixed(2)}% of this page differs`}
+async function cmGo(i){
+  if(i<1||i>CM.n)return;CM.i=i;const sess=CM.sess;$('#cm-sum').textContent='Comparing\u2026';
+  const r=await cmCompute(i,760);if(sess!=CM.sess)return;CM.diffs[i]=r.pct;cmShow(r,i)}
+async function openCompare(a,b){
+  const dlg=$('#cmpd');CM.sess++;CM.diffs={};CM.i=1;CM.kind=a.kind;
+  $('#cm-an').textContent='A: '+a.file.name;$('#cm-bn').textContent='B: '+b.file.name;$('#cm-list').innerHTML='';$('#cm-out').textContent='';$('#cm-sum').textContent='Loading\u2026';
+  try{dlg.showModal()}catch(e){dlg.setAttribute('open','')}
+  try{
+    CM.a={file:a.file};CM.b={file:b.file};
+    if(a.kind=='pdf'){CM.a.d=await pdfDoc(a.file);CM.b.d=await pdfDoc(b.file);CM.a.n=CM.a.d.numPages;CM.b.n=CM.b.d.numPages;CM.n=Math.max(CM.a.n,CM.b.n)}else CM.n=1;
+    await cmGo(1)}
+  catch(e){$('#cm-sum').textContent=(e&&e.message)||'Could not open these files.'}}
+$('#cm-prev').onclick=()=>cmGo(CM.i-1);$('#cm-next').onclick=()=>cmGo(CM.i+1);
+$('#cm-all').onclick=async()=>{
+  const sess=CM.sess;window.__cancel=false;const bad=[];
+  try{for(let i=1;i<=CM.n;i++){$('#cm-sum').textContent=`Checking page ${i} of ${CM.n}\u2026`;const r=await cmCompute(i,520);if(sess!=CM.sess)return;CM.diffs[i]=r.pct;if(r.pct>=0.01)bad.push(i);await tick()}}catch(e){return}
+  $('#cm-list').innerHTML=bad.map(i=>`<span class="chip"><button data-pg="${i}">Page ${i} \u00b7 ${CM.diffs[i].toFixed(2)}%</button></span>`).join('');
+  $('#cm-sum').textContent=bad.length?`${bad.length} of ${CM.n} page${CM.n>1?'s':''} differ`:'No visible differences found';
+  const n=(CM.a.n||1)!=(CM.b.n||1)?` The files have ${CM.a.n} and ${CM.b.n} pages.`:'';if(n)$('#cm-out').textContent=n.trim()};
+$('#cm-list').onclick=e=>{const b=e.target.closest('[data-pg]');if(b)cmGo(+b.dataset.pg)};
+$('#cm-save').onclick=async()=>{
+  const sess=CM.sess;$('#cm-out').textContent='Building report\u2026';
+  try{const list=[];for(let i=1;i<=CM.n;i++){$('#cm-out').textContent=`Building report: page ${i} of ${CM.n}\u2026`;const r=await cmCompute(i,900);if(sess!=CM.sess)return;
+      list.push([await cblob(r.D,'image/jpeg',.85),r.D.width,r.D.height]);await tick()}
+    const pdf=await imagesToPdf(list),u=mkUrl(pdf);$('#cm-out').innerHTML=`<a href="${u}" download="difference-report.pdf">Download difference-report.pdf</a> (${size(pdf.size)})`}
+  catch(e){$('#cm-out').textContent=(e&&e.message)||'Could not build the report.'}};
+function cmClose(){const d=$('#cmpd');try{d.close()}catch(e){d.removeAttribute('open')}CM.sess++;CM.a=CM.b=null}
+$('#cmp-x').onclick=cmClose;$('#cmpd').addEventListener('close',()=>{CM.sess++});
+
+/* ===== add-on packs (extra OCR languages and CJK fonts) ===== */
+const PACKS={ocr:{},fonts:{},names:{}};
+const OCRNAMES={eng:'English',hin:'Hindi',mar:'Marathi',guj:'Gujarati',ben:'Bengali',tam:'Tamil',tel:'Telugu',kan:'Kannada',mal:'Malayalam',pan:'Punjabi',urd:'Urdu',ara:'Arabic',chi_sim:'Chinese (Simplified)',chi_tra:'Chinese (Traditional)',jpn:'Japanese',kor:'Korean',fra:'French',deu:'German',spa:'Spanish',por:'Portuguese',ita:'Italian',rus:'Russian'};
+let packDB=null;
+const idb=()=>packDB||(packDB=new Promise((ok,no)=>{try{const r=indexedDB.open('filetools-packs',1);r.onupgradeneeded=()=>r.result.createObjectStore('packs');r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)}catch(e){no(e)}}));
+async function idbAll(){const db=await idb();return new Promise((ok,no)=>{const out=[],rq=db.transaction('packs').objectStore('packs').openCursor();rq.onsuccess=()=>{const c=rq.result;if(c){out.push([c.key,c.value]);c.continue()}else ok(out)};rq.onerror=()=>no(rq.error)})}
+async function idbPut(k,v){const db=await idb();return new Promise((ok,no)=>{const tx=db.transaction('packs','readwrite');tx.objectStore('packs').put(v,k);tx.oncomplete=ok;tx.onerror=()=>no(tx.error)})}
+async function idbDel(k){const db=await idb();return new Promise((ok,no)=>{const tx=db.transaction('packs','readwrite');tx.objectStore('packs').delete(k);tx.oncomplete=ok;tx.onerror=()=>no(tx.error)})}
+function registerPack(name,p){PACKS.names[name]={desc:p.desc||'',ocr:Object.keys(p.ocr||{}),fonts:Object.keys(p.fonts||{})};Object.assign(PACKS.ocr,p.ocr||{});Object.assign(PACKS.fonts,p.fonts||{})}
+function unregisterPack(name){const n=PACKS.names[name];if(!n)return;n.ocr.forEach(l=>delete PACKS.ocr[l]);n.fonts.forEach(f=>{delete PACKS.fonts[f];delete fontBytes[f]});delete PACKS.names[name]}
+async function gunzipB64(s){const bin=atob(s),a=new Uint8Array(bin.length);for(let i=0;i<a.length;i++)a[i]=bin.charCodeAt(i);return pipe(new Blob([a]),new DecompressionStream('gzip'))}
+const ocrAvail=()=>[...new Set([...Object.keys(OCRNAMES).filter(l=>document.getElementById('lib-lang-'+l)),...Object.keys(PACKS.ocr)])];
+function refreshLangs(){
+  const sel=$('#ocrlang');if(!sel)return;const av=ocrAvail(),hasEng=av.includes('eng'),opts=[];
+  av.forEach(l=>opts.push([l,OCRNAMES[l]||l]));
+  if(hasEng)av.filter(l=>l!='eng').forEach(l=>opts.push(['eng+'+l,'English and '+(OCRNAMES[l]||l)]));
+  sel.innerHTML=opts.map(o=>`<option value="${o[0]}">${esc(o[1])}</option>`).join('');
+  sel.value=opts.some(o=>o[0]==S.ocrlang)?S.ocrlang:(opts[0]?opts[0][0]:'eng');S.ocrlang=sel.value}
+function renderPackList(){
+  const n=Object.keys(PACKS.names);
+  $('#add-list').innerHTML=n.length?n.map(k=>`<div class="pk"><div><b>${esc(k)}</b><div class="meta">${esc(PACKS.names[k].desc)}</div></div><button data-rmpack="${esc(k)}">Remove</button></div>`).join(''):'<p class="meta">No add-on packs installed yet.</p>';
+  const have=ocrAvail().map(l=>OCRNAMES[l]||l).join(', ');
+  $('#add-have').textContent='OCR languages available: '+have+'. Chinese, Japanese and Korean text in PDFs: '+(PACKS.fonts.cjk?'available.':'needs the fonts pack.')}
+async function installPackText(text,fname){
+  let p;try{p=JSON.parse(text)}catch(e){throw new Error('That file is not a File Tools add-on pack.')}
+  if(!p||p.v!==1||(!p.ocr&&!p.fonts))throw new Error('That file is not a File Tools add-on pack.');
+  const name=p.name||fname;let kept=true;
+  try{await idbPut(name,p)}catch(e){kept=false}
+  unregisterPack(name);registerPack(name,p);refreshLangs();renderPackList();return{name,kept}}
+async function loadPacks(){
+  try{for(const[k,v]of await idbAll())registerPack(k,v)}catch(e){}
+  if(window.ftPacks){try{const done=JSON.parse(localStorage.getItem('ftpacks-auto')||'[]');
+    for(const f of window.ftPacks.list()){if(done.includes(f))continue;try{await installPackText(await window.ftPacks.read(f),f);done.push(f);localStorage.setItem('ftpacks-auto',JSON.stringify(done))}catch(e){}}}catch(e){}}
+  refreshLangs();renderPackList()}
+$('#addons').onclick=()=>{renderPackList();try{$('#addd').showModal()}catch(e){$('#addd').setAttribute('open','')}};
+$('#add-x').onclick=()=>{try{$('#addd').close()}catch(e){$('#addd').removeAttribute('open')}};
+$('#add-pick').onclick=()=>$('#add-file').click();
+$('#add-file').onchange=async e=>{
+  const files=[...e.target.files];e.target.value='';const msg=$('#add-msg');
+  for(const f of files){msg.textContent=`Adding ${f.name}\u2026`;await tick().catch(()=>{});
+    try{const r=await installPackText(await f.text(),f.name);msg.textContent=`Added "${r.name}".`+(r.kept?'':' This browser would not save it, so it is available only until you close the page.')}
+    catch(err){msg.textContent=(err&&err.message)||'Could not add that pack.';return}}};
+$('#add-list').onclick=async e=>{const b=e.target.closest('[data-rmpack]');if(!b)return;const k=b.dataset.rmpack;if(!confirm('Remove "'+k+'"?'))return;
+  try{await idbDel(k)}catch(err){}unregisterPack(k);refreshLangs();renderPackList()};
+loadPacks();
 
 </script>
 </body>
